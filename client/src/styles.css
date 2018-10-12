@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+html {
+   overflow: visible;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+   background-color: hsl(0, 0%, 97%);
+   overflow-y: scroll;
+   margin: 0 auto;
+   width: 70%;
+   min-width: 900px;
+   padding: 0 30px;
+   color: hsl(0, 0%, 29%);
+   letter-spacing: .9px;
+}
+
+html, body {
+   font-family: 'Open Sans', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+   margin: 0;
+   padding: 0;
+}
+
+/* Custom styles */
+.page-title {
+   font-size: 1.8rem;
+   font-weight: 600;
+}

@@ -1,0 +1,33 @@
+<div class="content-wrapper">
+
+   <div class="tournaments-container">
+      <h1 class="page-title">Tournaments</h1>
+   
+      <div *ngFor="let tournament of tournaments" class="tournament">
+         <div class="tournament-left-container">
+            <div class="tournament-pokerroom-container">
+               <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
+            </div>
+            <div class="tournament-info-container">
+               <p class="tournament-name">{{ tournament.name }}</p>
+               <p class="tournament-time">Starts at {{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0' }}</p>
+            </div>
+         </div>
+         <div class="tournament-right-container">
+            <div class="tournament-buyin-container">
+               <p class="tournament-buyin">${{ tournament.buyin | number : '1.2-2' }}</p>
+               <p class="tournament-info-subtitle">Buyin</p>
+            </div>
+            <div class="tournament-prizepool-container">
+               <p class="tournament-prizepool">${{ tournament.prizePool }}</p>
+               <p class="tournament-info-subtitle">Prize pool</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   
+   <div class="sidebar-container">
+      
+   </div>
+
+</div>

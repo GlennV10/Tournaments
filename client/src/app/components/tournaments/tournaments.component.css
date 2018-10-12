@@ -1,0 +1,103 @@
+/* General */
+.content-wrapper {
+   display: grid;
+   grid-template-columns: calc(100% - 340px) 300px;
+   grid-column-gap: 40px;
+}
+
+/* ======= TOURNAMENT ======= */
+.page-title {
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   margin-bottom: 40px;
+}
+
+.page-title > i {
+   color: hsla(133, 44%, 51%, .9);
+   font-size: 1.2rem;
+   margin-right: 20px;
+}
+
+/* General*/
+.tournament {
+   display: flex;   
+   padding: 10px 22px;
+   margin-bottom: 10px;
+   /* width: 100%; ??? Why acting strange */ 
+   background-color: hsl(0, 0%, 100%);
+   -webkit-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
+   -moz-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
+   box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
+   outline: none;
+   cursor: pointer;
+}
+
+.tournament-left-container, .tournament-right-container {
+   display: flex;
+}
+
+.tournament-left-container {
+   justify-content: flex-start;
+   width: calc(100% - 200px);
+}
+
+.tournament-right-container {
+   justify-content: flex-end;
+   width: 200px;
+}
+
+/* Poker room */
+.tournament-pokerroom-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right: 22px;
+}
+
+.tournament-pokerroom {
+   width: 1rem;
+}
+
+/* Info */
+.tournament-info-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+}
+
+.tournament-name {
+   font-size: .9rem;
+   font-weight: 700;
+}
+
+.tournament-time {
+   font-size: .77rem;
+   color: hsl(0, 0%, 45%);
+}
+
+/* Buyin & Prizepool */
+.tournament-buyin-container, .tournament-prizepool-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 100px;
+}
+
+.tournament-buyin, .tournament-prizepool {
+   font-size: .85rem;
+   font-weight: 600;
+}
+
+.tournament-info-subtitle {
+   font-size: .60rem;
+   color: hsl(0, 0%, 66%);
+}
+
+/* ======= SIDEBAR ======= */
+/* General */
+.sidebar-container {
+   background-color: white;
+}
