@@ -27,7 +27,81 @@
    </div>
    
    <div class="sidebar-container">
-      
+      <div class="statistics-tournaments-container">   
+         <p class="stats-tournaments">{{ tournaments.length }}</p>
+         <p class="stats-subtitle">Tournaments</p>
+      </div>
+
+      <div class="statistics-format-container">
+         <div class="format-container"> <!-- *ngFor -->            
+            <div class="format-stats">
+               <p class="format">Regular</p> <!-- {{ format.name }} -->
+               <p class="format-count"><span>1</span> / 3</p> <!-- {{ format.count }}/{{ tournaments.length }} -->
+            </div>
+            <div class="format-bar">
+               <span style="width: 12%" class="format-progressbar"></span>
+            </div>
+         </div>
+         <div class="format-container"> <!-- *ngFor -->
+            <div class="format-stats">
+               <p class="format">Bounty Builder</p> <!-- {{ format.name }} -->
+               <p class="format-count"><span>1</span> / 3</p> <!-- {{ format.count }}/{{ tournaments.length }} -->
+            </div>
+            <div class="format-bar">
+               <span style="width: 68%" class="format-progressbar"></span>
+            </div>
+         </div>
+         <div class="format-container"> <!-- *ngFor -->  
+            <div class="format-stats">
+               <p class="format">Big</p> <!-- {{ format.name }} -->
+               <p class="format-count"><span>1</span> / 3</p> <!-- {{ format.count }}/{{ tournaments.length }} -->
+            </div>
+            <div class="format-bar">
+               <span style="width: 30%" class="format-progressbar"></span>
+            </div>
+         </div>
+      </div>
+
+      <div class="starting-tournaments-container">
+         <h2 class="starting-tournaments-title">Starting soon</h2>
+
+         <div class="starting-tournament">  <!-- *ngFor -->            
+            <div class="tournament-pokerroom-container">
+               <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
+            </div>
+            <div class="starting-tournament-info-container">
+               <p class="starting-tournament-name">Bounty Builder $4.40</p> <!-- {{ startingTournament.tournament.name }} -->
+               <p class="starting-tournament-time">Starts in 4 minutes</p> <!-- {{ startingTournament.startsIn }} -->
+            </div>
+         </div>
+         <div class="starting-tournament">  <!-- *ngFor -->         
+            <div class="tournament-pokerroom-container">
+               <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
+            </div>
+            <div class="starting-tournament-info-container">
+               <p class="starting-tournament-name">Bounty Builder $4.40</p> <!-- {{ startingTournament.tournament.name }} -->
+               <p class="starting-tournament-time">Starts in 21 minutes</p> <!-- {{ startingTournament.startsIn }} -->
+            </div>
+         </div>
+         <div class="starting-tournament">  <!-- *ngFor -->         
+            <div class="tournament-pokerroom-container">
+               <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
+            </div>
+            <div class="starting-tournament-info-container">
+               <p class="starting-tournament-name">Bounty Builder $4.40</p> <!-- {{ startingTournament.tournament.name }} -->
+               <p class="starting-tournament-time">Starts in 38 minutes</p> <!-- {{ startingTournament.startsIn }} -->
+            </div>
+         </div>
+         <div class="starting-tournament">  <!-- *ngFor -->         
+            <div class="tournament-pokerroom-container">
+               <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
+            </div>
+            <div class="starting-tournament-info-container">
+               <p class="starting-tournament-name">Bounty Builder $4.40</p> <!-- {{ startingTournament.tournament.name }} -->
+               <p class="starting-tournament-time">Starts in 44 minutes</p> <!-- {{ startingTournament.startsIn }} -->
+            </div>
+         </div>
+      </div>
    </div>
 
 </div>

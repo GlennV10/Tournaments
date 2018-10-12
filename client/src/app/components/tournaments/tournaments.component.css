@@ -97,7 +97,108 @@
 }
 
 /* ======= SIDEBAR ======= */
+/* === Statistics === */
+/* Tournaments */
+.statistics-tournaments-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border-radius: 5px;
+   color: hsla(0, 0%, 100%, .95);
+   padding: 15px;
+}
+
+.statistics-tournaments-container {
+   background-color: hsl(133, 44%, 51%);
+}
+
+.stats-tournaments {
+   font-size: 1.6rem;
+   font-weight: 700;
+}
+
+.stats-subtitle {
+   font-size: .85rem;
+   color: hsla(0, 0%, 100%, .70);
+}
+
+/* Formats */
+.statistics-format-container {
+   margin-top: 60px;
+}
+
+.format-container {
+   margin-top: 20px;
+}
+
+.format-stats {
+   display: grid;
+   grid-template-columns: 200px 100px
+}
+
+.format {   
+   font-size: .77rem;
+   color: hsl(0, 0%, 45%);
+}
+
+.format-count {
+   text-align: right;   
+   font-size: .77rem;
+   color: hsl(0, 0%, 66%);
+}
+
+.format-count > span {
+   font-weight: 700;
+   color: hsl(0, 0%, 45%);
+}
+
+.format-bar {
+   height: 5px;
+   margin-top: 5px;
+   position: relative;
+   background-color: hsl(0, 0%, 94%);   
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+}
+
+.format-progressbar {
+   display: block;
+   height: 100%;
+   background: linear-gradient(to right, #5fcd77 0%, #4bb963 100%);
+   position: relative;
+   overflow: hidden;   
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+	border-radius: 25px;
+}
+
+/* === Starting tournaments === */
 /* General */
-.sidebar-container {
-   background-color: white;
+.starting-tournaments-container {
+   margin-top: 60px;
+}
+
+.starting-tournaments-title {
+   font-size: .8rem;
+   font-weight: 600;
+   text-transform: uppercase;
+   letter-spacing: initial;
+}
+
+/* Starting tournament */
+.starting-tournament {
+   display: flex;
+   margin-top: 15px;
+}
+
+.starting-tournament-name {
+   font-size: .9rem;
+   font-weight: 600;
+}
+
+.starting-tournament-time {
+   font-size: .77rem;
+   color: hsl(0, 0%, 66%);
 }
