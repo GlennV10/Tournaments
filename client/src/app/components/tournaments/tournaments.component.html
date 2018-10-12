@@ -27,10 +27,20 @@
    </div>
    
    <div class="sidebar-container">
-      <div class="statistics-tournaments-container">   
-         <p class="stats-tournaments">{{ tournaments.length }}</p>
-         <p class="stats-subtitle">Tournaments</p>
+      <div class="filters-container">   
+         <div class="slider-buyin-container"></div>
+         <div class="tags-speed-container">
+            <div class="tags" *ngFor="let speed of speeds">
+               <p class="tags-name">{{ speed }}</p>
+            </div>
+         </div>
       </div>
+
+      <!-- 
+         Slider for BUYIN/TIME(?)
+         Tags(/checkboxes) for SPEED/FORMAT
+         Search bar (?)
+      -->
 
       <div class="statistics-format-container">
          <div class="format-container"> <!-- *ngFor -->            

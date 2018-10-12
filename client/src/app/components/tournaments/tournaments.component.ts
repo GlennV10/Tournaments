@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TournamentsComponent implements OnInit {
    private tournaments: any;
+   private speeds: any;
 
    constructor() {
       let tournaments = [
@@ -38,8 +39,11 @@ export class TournamentsComponent implements OnInit {
             }
          }
       ]
+
+      let speeds = ['Slow', 'Regular', 'Turbo', 'Hyper-Turbo', 'Bubble Rush'];
       
       this.tournaments = tournaments;
+      this.speeds = speeds;
    }
 
    ngOnInit() {
