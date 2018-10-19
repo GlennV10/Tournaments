@@ -1,9 +1,10 @@
 <div class="content-wrapper">
-
    <div class="tournaments-container">
-      <h1 class="page-title">Tournaments</h1>
-   
-      <div *ngFor="let tournament of tournaments" class="tournament">
+      <h1 class="page-title">Tournaments</h1>   
+      <!-- <div class="tournament" *ngFor="let tournament of tournaments 
+                                          | filterBuyin : minBuyin : maxBuyin
+                                          | filterSpeed : speeds"> -->
+      <div class="tournament" *ngFor="let tournament of tournaments">
          <div class="tournament-left-container">
             <div class="tournament-pokerroom-container">
                <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
@@ -52,24 +53,6 @@
          </div>
       </div>
 
-      <!-- 
-         Slider for BUYIN/TIME(?)
-         Tags(/checkboxes) for SPEED/FORMAT
-         Search bar (?)
-      -->
-
-      <!-- <div class="statistics-format-container">
-         <div class="format-container" *ngFor="let format of formats">          
-            <div class="format-stats">
-               <p class="format">{{ format.name }}</p>
-               <p class="format-count"><span>{{ format.count }}</span> / {{ tournaments.length }}</p>
-            </div>
-            <div class="format-bar">
-               <span style="width: 12%" class="format-progressbar"></span>
-            </div>
-         </div>
-      </div> -->
-
       <div class="starting-tournaments-container">
          <h2 class="sidebar-title">Starting soon</h2>
 
@@ -111,5 +94,4 @@
          </div>
       </div>
    </div>
-
 </div>

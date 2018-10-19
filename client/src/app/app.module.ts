@@ -12,23 +12,30 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { SessionComponent } from './components/session/session.component';
 import { ResultsComponent } from './components/results/results.component';
 
+import { TournamentService } from './services/tournament/tournament.service';
+
+import { BuyinFilterPipe } from './shared/pipes/buyin-filter.pipe';
+import { SpeedFilterPipe } from './shared/pipes/speed-filter.pipe';
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    DashboardComponent,
-    TournamentsComponent,
-    ScheduleComponent,
-    SessionComponent,
-    ResultsComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+   declarations: [
+      AppComponent,
+      NavbarComponent,
+      DashboardComponent,
+      TournamentsComponent,
+      ScheduleComponent,
+      SessionComponent,
+      ResultsComponent,
+      BuyinFilterPipe,
+      SpeedFilterPipe
+   ],
+   imports: [
+      BrowserModule,
+      FormsModule,
+      HttpClientModule,
+      AppRoutingModule
+   ],
+   providers: [TournamentService, BuyinFilterPipe, SpeedFilterPipe],
+   bootstrap: [AppComponent]
 })
 export class AppModule { }
