@@ -97,29 +97,104 @@
 }
 
 /* ======= SIDEBAR ======= */
+/* General */
+.sidebar-title {
+   font-size: .8rem;
+   font-weight: 600;
+   text-transform: uppercase;
+   letter-spacing: initial;
+}
+
 /* === Filters === */
 .filters-container {
    margin-bottom: 60px;
 }
 
-.tags-speed-container {
+/* === Buyin === */
+.slider-buyin-container {
+   margin-top: 15px;
+}
+
+.slider-buyin {   
+   -webkit-appearance: none;  /* Override default CSS styles */
+   appearance: none;
+   width: 100%;
+   height: 5px;
+   margin-top: 5px;
+   position: relative;
+   background: hsl(0, 0%, 94%);   
+	-moz-border-radius: 25px;
+	-webkit-border-radius: 25px;
+   border-radius: 25px;
+   outline: none;
+}
+
+.slider-buyin::-webkit-slider-thumb {
+   -webkit-appearance: none; /* Override default look */
+   appearance: none;
+   width: 10px; /* Set a specific slider handle width */
+   height: 10px; /* Slider handle height */
+   border-radius: 50%;
+   background: hsl(133, 44%, 51%);; /* Green background */
+   cursor: pointer; /* Cursor on hover */
+}
+
+.slider-buyin::-moz-range-thumb {
+   width: 10px; /* Set a specific slider handle width */
+   height: 10px; /* Slider handle height */
+   border-radius: 50%;
+   background: hsl(133, 44%, 51%);; /* Green background */
+   cursor: pointer; /* Cursor on hover */
+}
+
+.buyin-stats {
+   display: grid;
+   grid-template-columns: 200px 100px
+}
+
+.buyin {   
+   font-size: .77rem;
+   color: hsl(0, 0%, 45%);
+}
+
+.buyin-value {
+   text-align: right;   
+   font-size: .77rem;
+   color: hsl(0, 0%, 66%);
+}
+
+/* === Tags === */
+.tags-container {
+   margin-top: 30px;
    display: flex;
    flex-flow: row wrap;
 }
 
 .tags {
-   background-color: hsl(214, 42%, 94%);
    border-radius: 8px;
    padding: 5px 11px;
    margin-right: 8px;
    margin-bottom: 8px;
+   cursor: pointer;
 }
 
-.tags-name {
-   color: hsl(214, 42%, 26%);
+.tag-name {
    font-size: .55rem;
    font-weight: 700;
    text-align: center;
+}
+
+/* Speed */
+.tags-speed {
+   background-color: hsl(214, 42%, 94%);
+}
+
+.tag-name-speed {
+   color: hsl(214, 42%, 26%);
+}
+
+.tag-name-unchecked-speed {
+   color: hsl(214, 42%, 80%);
 }
 
 /* === Statistics === */
@@ -178,13 +253,6 @@
 /* General */
 .starting-tournaments-container {
    margin-top: 60px;
-}
-
-.starting-tournaments-title {
-   font-size: .8rem;
-   font-weight: 600;
-   text-transform: uppercase;
-   letter-spacing: initial;
 }
 
 /* Starting tournament */

@@ -28,10 +28,26 @@
    
    <div class="sidebar-container">
       <div class="filters-container">   
-         <div class="slider-buyin-container"></div>
-         <div class="tags-speed-container">
-            <div class="tags" *ngFor="let speed of speeds">
-               <p class="tags-name">{{ speed }}</p>
+         <h2 class="sidebar-title">Filters</h2>
+         <div class="buyin-container">
+            <div class="slider-buyin-container">           
+                  <div class="buyin-stats">
+                     <p class="buyin">Minimum</p>
+                     <p class="buyin-value">${{ minBuyin.level | number : '1.2-2'  }}</p>
+                  </div>
+               <input type="range" class="slider-buyin" min="0" max="{{ buyins.length - 1}}" step="1" value="{{ minBuyin.step }}" (input)="onMinBuyinChange($event)">
+            </div>
+            <div class="slider-buyin-container">           
+                  <div class="buyin-stats">
+                     <p class="buyin">Maximum</p>
+                     <p class="buyin-value">${{ maxBuyin.level | number : '1.2-2' }}</p>
+                  </div>
+               <input type="range" class="slider-buyin" min="0" max="{{ buyins.length - 1 }}" step="1" value="{{ maxBuyin.step }}" (input)="onMaxBuyinChange($event)">
+            </div>
+         </div>
+         <div class="tags-container">
+            <div class="tags tags-speed" *ngFor="let speed of speeds" (click)="onSpeedChange(speed.name)">
+               <p class="tag-name tags-name-speed" [ngClass]="{'tag-name-unchecked-speed': !speed.checked}">{{ speed.name }}</p>
             </div>
          </div>
       </div>
@@ -42,38 +58,20 @@
          Search bar (?)
       -->
 
-      <div class="statistics-format-container">
-         <div class="format-container"> <!-- *ngFor -->            
+      <!-- <div class="statistics-format-container">
+         <div class="format-container" *ngFor="let format of formats">          
             <div class="format-stats">
-               <p class="format">Regular</p> <!-- {{ format.name }} -->
-               <p class="format-count"><span>1</span> / 3</p> <!-- {{ format.count }}/{{ tournaments.length }} -->
+               <p class="format">{{ format.name }}</p>
+               <p class="format-count"><span>{{ format.count }}</span> / {{ tournaments.length }}</p>
             </div>
             <div class="format-bar">
                <span style="width: 12%" class="format-progressbar"></span>
             </div>
          </div>
-         <div class="format-container"> <!-- *ngFor -->
-            <div class="format-stats">
-               <p class="format">Bounty Builder</p> <!-- {{ format.name }} -->
-               <p class="format-count"><span>1</span> / 3</p> <!-- {{ format.count }}/{{ tournaments.length }} -->
-            </div>
-            <div class="format-bar">
-               <span style="width: 68%" class="format-progressbar"></span>
-            </div>
-         </div>
-         <div class="format-container"> <!-- *ngFor -->  
-            <div class="format-stats">
-               <p class="format">Big</p> <!-- {{ format.name }} -->
-               <p class="format-count"><span>1</span> / 3</p> <!-- {{ format.count }}/{{ tournaments.length }} -->
-            </div>
-            <div class="format-bar">
-               <span style="width: 30%" class="format-progressbar"></span>
-            </div>
-         </div>
-      </div>
+      </div> -->
 
       <div class="starting-tournaments-container">
-         <h2 class="starting-tournaments-title">Starting soon</h2>
+         <h2 class="sidebar-title">Starting soon</h2>
 
          <div class="starting-tournament">  <!-- *ngFor -->            
             <div class="tournament-pokerroom-container">
