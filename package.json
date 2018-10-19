@@ -1,0 +1,22 @@
+{
+  "name": "poker",
+  "version": "1.0.0",
+  "description": "Tournament Poker API",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GlennV10/Tournaments.git"
+  },
+  "author": "Glenn Verlinden",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.4",
+    "moment": "^2.22.2",
+    "mongoose": "^5.3.4"
+  }
+}

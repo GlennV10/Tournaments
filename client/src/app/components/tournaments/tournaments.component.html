@@ -1,10 +1,9 @@
-<div class="content-wrapper">
+<div *ngIf="tournaments" class="content-wrapper">
    <div class="tournaments-container">
       <h1 class="page-title">Tournaments</h1>   
-      <!-- <div class="tournament" *ngFor="let tournament of tournaments 
+      <div class="tournament" *ngFor="let tournament of tournaments 
                                           | filterBuyin : minBuyin : maxBuyin
-                                          | filterSpeed : speeds"> -->
-      <div class="tournament" *ngFor="let tournament of tournaments">
+                                          | filterSpeed : speeds">
          <div class="tournament-left-container">
             <div class="tournament-pokerroom-container">
                <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
