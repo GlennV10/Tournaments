@@ -1,6 +1,6 @@
 <div *ngIf="tournaments" class="content-wrapper">
    <div class="tournaments-container">
-      <h1 class="page-title">Tournaments</h1>   
+      <h1 class="page-title"><span>{{ (tournaments | filterBuyin : minBuyin : maxBuyin | filterSpeed : speeds)?.length }}</span> tournaments found</h1>
       <div class="tournament" *ngFor="let tournament of tournaments 
                                           | filterBuyin : minBuyin : maxBuyin
                                           | filterSpeed : speeds">
@@ -55,40 +55,13 @@
       <div class="starting-tournaments-container">
          <h2 class="sidebar-title">Starting soon</h2>
 
-         <div class="starting-tournament">  <!-- *ngFor -->            
+         <div class="starting-tournament" *ngFor="let tournament of startingTournaments">           
             <div class="tournament-pokerroom-container">
                <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
             </div>
             <div class="starting-tournament-info-container">
-               <p class="starting-tournament-name">Bounty Builder $4.40</p> <!-- {{ startingTournament.tournament.name }} -->
-               <p class="starting-tournament-time">Starts in 4 minutes</p> <!-- {{ startingTournament.startsIn }} -->
-            </div>
-         </div>
-         <div class="starting-tournament">  <!-- *ngFor -->         
-            <div class="tournament-pokerroom-container">
-               <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
-            </div>
-            <div class="starting-tournament-info-container">
-               <p class="starting-tournament-name">Bounty Builder $4.40</p> <!-- {{ startingTournament.tournament.name }} -->
-               <p class="starting-tournament-time">Starts in 21 minutes</p> <!-- {{ startingTournament.startsIn }} -->
-            </div>
-         </div>
-         <div class="starting-tournament">  <!-- *ngFor -->         
-            <div class="tournament-pokerroom-container">
-               <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
-            </div>
-            <div class="starting-tournament-info-container">
-               <p class="starting-tournament-name">Bounty Builder $4.40</p> <!-- {{ startingTournament.tournament.name }} -->
-               <p class="starting-tournament-time">Starts in 38 minutes</p> <!-- {{ startingTournament.startsIn }} -->
-            </div>
-         </div>
-         <div class="starting-tournament">  <!-- *ngFor -->         
-            <div class="tournament-pokerroom-container">
-               <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
-            </div>
-            <div class="starting-tournament-info-container">
-               <p class="starting-tournament-name">Bounty Builder $4.40</p> <!-- {{ startingTournament.tournament.name }} -->
-               <p class="starting-tournament-time">Starts in 44 minutes</p> <!-- {{ startingTournament.startsIn }} -->
+               <p class="starting-tournament-name">{{ tournament.tournament.name }}</p>
+               <p class="starting-tournament-time">Starts in {{ tournament.startsIn }} minutes</p>
             </div>
          </div>
       </div>

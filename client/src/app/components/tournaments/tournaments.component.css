@@ -1,22 +1,17 @@
 /* General */
 .content-wrapper {
    display: grid;
-   grid-template-columns: calc(100% - 340px) 300px;
-   grid-column-gap: 40px;
+   grid-template-columns: calc(100% - 360px) 300px;
+   grid-column-gap: 60px;
 }
 
 /* ======= TOURNAMENT ======= */
 .page-title {
-   display: flex;
-   justify-content: flex-start;
-   align-items: center;
-   margin-bottom: 40px;
+   margin-bottom: 30px;
 }
 
-.page-title > i {
-   color: hsla(133, 44%, 51%, .9);
-   font-size: 1.2rem;
-   margin-right: 20px;
+.page-title > span {
+   font-weight: 700;
 }
 
 /* General*/
@@ -69,7 +64,7 @@
 
 .tournament-name {
    font-size: .9rem;
-   font-weight: 700;
+   font-weight: 600;
 }
 
 .tournament-time {
