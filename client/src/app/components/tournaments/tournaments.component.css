@@ -18,28 +18,39 @@
 .tournament {
    display: flex;   
    padding: 10px 22px;
-   margin-bottom: 10px;
-   /* width: 100%; ??? Why acting strange */ 
+   margin-bottom: 8px;
+   /*width: 100%;  ??? Why acting strange */
    background-color: hsl(0, 0%, 100%);
-   -webkit-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
+   /* -webkit-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
    -moz-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
-   box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
+   box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05); */
    outline: none;
-   cursor: pointer;
 }
 
-.tournament-left-container, .tournament-right-container {
+/* Name */
+.tournament-name-container {
    display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+   width: 100%;
 }
 
-.tournament-left-container {
-   justify-content: flex-start;
-   width: calc(100% - 200px);
+.tournament-name {
+   font-size: .8rem;
+   font-weight: 700;
 }
 
-.tournament-right-container {
-   justify-content: flex-end;
-   width: 200px;
+.tournament-time {
+   font-size: .80rem;
+   color: hsl(0, 0%, 45%);
+}
+
+/* Info */
+.tournament-info-container {
+   display: flex;
+   padding-left: 22px;
+   border-left: 2px solid hsl(0, 0%, 97%);
 }
 
 /* Poker room */
@@ -48,32 +59,17 @@
    justify-content: center;
    align-items: center;
    margin-right: 22px;
+   font-size: .85rem;
+   font-weight: 600;
 }
 
 .tournament-pokerroom {
    width: 1rem;
+   margin-right: 5px;
 }
 
-/* Info */
-.tournament-info-container {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: flex-start;
-}
-
-.tournament-name {
-   font-size: .9rem;
-   font-weight: 600;
-}
-
-.tournament-time {
-   font-size: .77rem;
-   color: hsl(0, 0%, 45%);
-}
-
-/* Buyin & Prizepool */
-.tournament-buyin-container, .tournament-prizepool-container {
+/* Buyin  */
+.tournament-buyin-container {
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -81,14 +77,49 @@
    width: 100px;
 }
 
-.tournament-buyin, .tournament-prizepool {
+.tournament-buyin {
    font-size: .85rem;
    font-weight: 600;
 }
 
 .tournament-info-subtitle {
-   font-size: .60rem;
+   font-size: .55rem;
    color: hsl(0, 0%, 66%);
+   text-transform: uppercase;
+}
+
+/* Tournament buttons */
+.tournament-button-container {
+   display: flex;
+   width: 220px;
+   padding-left: 22px;
+   border-left: 2px solid hsl(0, 0%, 97%);
+}
+
+.btn-details {
+   margin-right: 10px;
+}
+
+.btn-details > i {
+   margin-right: 5px;
+}
+
+.btn-favourite:hover > .far.fa-star {
+	color: hsl(36.8, 90.36%, 77.18%);
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn-favourite:hover > .fas.fa-star {
+	color: hsl(0, 0%, 95%);
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.fas.fa-star {
+   color: hsl(36.8, 90.36%, 77.18%);
 }
 
 /* ======= SIDEBAR ======= */

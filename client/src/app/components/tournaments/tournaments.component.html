@@ -4,24 +4,27 @@
       <div class="tournament" *ngFor="let tournament of tournaments 
                                           | filterBuyin : minBuyin : maxBuyin
                                           | filterSpeed : speeds">
-         <div class="tournament-left-container">
-            <div class="tournament-pokerroom-container">
-               <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
-            </div>
-            <div class="tournament-info-container">
-               <p class="tournament-name">{{ tournament.name }}</p>
-               <p class="tournament-time">Starts at {{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0' }}</p>
-            </div>
+         <div class="tournament-name-container">
+            <p class="tournament-name">{{ tournament.name }}</p>
+            <p class="tournament-time"><i class="far fa-clock"></i> {{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0' }}</p>
          </div>
-         <div class="tournament-right-container">
+         <div class="tournament-info-container">
+            <div class="tournament-pokerroom-container">
+               <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg"> {{ tournament.pokerroom }}
+            </div>
             <div class="tournament-buyin-container">
                <p class="tournament-buyin">${{ tournament.buyin | number : '1.2-2' }}</p>
                <p class="tournament-info-subtitle">Buyin</p>
             </div>
-            <div class="tournament-prizepool-container">
-               <p class="tournament-prizepool">${{ tournament.prizePool }}</p>
-               <p class="tournament-info-subtitle">Prize pool</p>
-            </div>
+         </div>
+         <div class="tournament-button-container">
+            <button type="button" name="button" class="btn btn-details" [routerLink]="['/tournaments', tournament._id]"><i class="fas fa-info-circle"></i> Details</button>            
+            <button *ngIf="1===1" type="button" name="button" class="btn btn-favourite" (click)="scheduleTournament(tournament._id)">
+               <i class="far fa-star"></i>
+            </button>
+            <button *ngIf="1 === 2" type="button" name="button" class="btn btn-favourite" (click)="unscheduleTournament(tournament._id)">
+               <i class="fas fa-star"></i>
+            </button>
          </div>
       </div>
    </div>
