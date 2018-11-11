@@ -12,6 +12,9 @@ router.get('/', tournament.getAllTournaments);
 /* Get Tournaments starting soon */
 router.get('/starting', tournament.getStartingTournaments);
 
+/* Get ONE Tournament */
+router.get('/:id', tournament.getTournamentById);
+
 /**
  * POST-requests
  */

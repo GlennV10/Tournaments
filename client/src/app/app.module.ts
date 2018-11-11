@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { TournamentComponent } from './components/tournament/tournament.component';
 import { TournamentsComponent } from './components/tournaments/tournaments.component';
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { SessionComponent } from './components/session/session.component';
@@ -22,6 +23,7 @@ import { SpeedFilterPipe } from './shared/pipes/speed-filter.pipe';
       AppComponent,
       NavbarComponent,
       DashboardComponent,
+      TournamentComponent,
       TournamentsComponent,
       ScheduleComponent,
       SessionComponent,

@@ -14,6 +14,11 @@ export class TournamentService {
       private http: HttpClient
    ) { }
 
+   /* Get Tournament by ID */
+   getTournament(id: String): Observable<Tournament> {
+      return this.http.get<Tournament>(`${this.api}/api/tournaments/${id}`);
+   }
+
    /* Get ALL Tournament */
    getTournaments(): Observable<Tournament[]> {
       return this.http.get<Tournament[]>(`${this.api}/api/tournaments`);

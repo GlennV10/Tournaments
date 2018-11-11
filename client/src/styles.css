@@ -30,3 +30,50 @@ h1, h2, h3, h4, h5, h6, p {
 .page-title {
    font-size: 1.6rem;
 }
+
+/* Buttons */
+.btn {
+	border: none;
+   border-radius: 0.2em;
+	font-family: inherit;
+	font-size: .7em;
+	color: inherit;
+	background: none;
+	cursor: pointer;
+	padding: 0 6px;
+	display: inline-block;
+	font-weight: 600;
+	outline: none;
+	position: relative;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn-details {
+   color: hsl(133, 44%, 51%);
+   border: 2px solid hsl(133, 44%, 51%);
+   border-radius: 5px;
+   text-transform: uppercase;
+   font-weight: 700;
+}
+
+.btn-details:hover,
+.btn-details:active {
+   background: hsl(133, 44%, 51%);
+   color: #fff;
+}
+
+.btn-favourite {
+   color: hsl(0, 0%, 95%);
+   border: 2px solid hsl(0, 0%, 95%);
+   border-radius: 5px;
+}
+
+.btn-favourite:hover,
+.btn-favourite:active {
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+   color: hsl(0, 0%, 95%);   
+}

@@ -8,6 +8,16 @@ const Tournament = require('../models/Tournament');
  * Route functions
  */
 /* === GET === */
+exports.getTournamentById = (req, res, next) => {
+   Tournament.findOne({      
+      _id: req.params.id
+   })
+   .then((tournament) => {
+      res.json(tournament);
+   })
+   .catch(next);
+};
+
 exports.getAllTournaments = (req, res, next) => {
    Tournament.find({})
       .sort({ time: 1 })
