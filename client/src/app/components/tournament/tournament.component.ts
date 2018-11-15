@@ -10,7 +10,8 @@ import { TournamentService } from '../../services/tournament/tournament.service'
    styleUrls: ['./tournament.component.css']
 })
 export class TournamentComponent implements OnInit {
-   tournament: Tournament;
+   private tournament: Tournament;
+   private today: Number;
 
    constructor(
       private router: Router,
@@ -22,13 +23,14 @@ export class TournamentComponent implements OnInit {
       this.activatedRoute.params.subscribe(params => {
          this.getTournament(params.id);
       });
+
+      this.today = Date.now();
    }
 
    getTournament(id: String): void {
       this.tournamentService.getTournament(id)
          .subscribe(tournament => {
             this.tournament = tournament;
-            console.log(tournament);
          });
    }
 

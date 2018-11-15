@@ -13,9 +13,28 @@ const TournamentSchema = new Schema({
       enum: ['Pokerstars']
    },
    buyin: {
-      type: Number,
-      min: 0.01,
-      required: true
+      total: {
+         type: Number,
+         min: 0.01,
+         required: true
+      },
+      regularPool: {
+         type: Number,
+         min: 0.01,
+         required: true
+      },
+      bountyPool: {
+         type: Number,
+         min: 0,
+         required: function() { return this.formats.includes('Progressive Knockout') || 
+                                          this.formats.includes('Bounty Builder') ||
+                                          this.formats.includes('Knockout') }
+      },
+      rake: {
+         type: Number,
+         min: 0,
+         required: true
+      }
    },
    prizePool: {
       type: Number,

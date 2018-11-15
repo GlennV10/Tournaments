@@ -77,3 +77,18 @@ h1, h2, h3, h4, h5, h6, p {
 	transition: all 0.3s;
    color: hsl(0, 0%, 95%);   
 }
+
+.btn-default {
+   color: hsl(133, 44%, 95%);
+   background-color: hsl(133, 44%, 51%);
+	font-size: .85em;
+   /* letter-spacing: 1px; */
+   /* text-transform: uppercase; */
+   font-weight: 600;
+}
+
+.btn-default:hover,
+.btn-default:active {
+   background: hsl(133, 44%, 45%);
+   color: #fff;
+}

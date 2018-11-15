@@ -1,0 +1,29 @@
+/* General */
+.content-wrapper {
+   padding: 0 100px;
+   display: grid;
+   grid-template-columns: calc(100% - 360px) 300px;
+   grid-column-gap: 60px;
+}
+
+/* ======= TOURNAMENT ======= */
+
+
+/* ======= PLAY/SIDEBAR ======= */
+/* General */
+.play-tournament-container {
+   padding: 22px;
+   background-color: hsl(0, 0%, 100%);
+   -webkit-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
+   -moz-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
+   box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
+}
+
+/* Info */
+
+/* Date */
+
+.btn {
+   width: 100%;
+   padding: 10px;
+}

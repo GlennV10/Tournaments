@@ -1,4 +1,43 @@
-<p *ngIf="tournament">
-  {{ tournament.name }}
-  {{ tournament._id }}
-</p>
+<div *ngIf="tournament" class="content-wrapper">
+   <div class="tournament-container">
+
+   </div>
+
+   <div class="sidebar-container">
+      <div class="play-tournament-container">
+         <div class="play-tournament-info">
+            <div class="play-tournament-info-total">
+               <p class="tournament-info-total-key">Buyin</p>
+               <p class="tournament-info-total-value">{{ tournament?.buyin.total }}</p>
+            </div>
+            <div class="play-tournament-info-breakdown">
+               <div class="tournament-breakdown-row">
+                  <p class="tournament-breakdown-row-key">Regular prize pool</p>
+                  <p class="tournament-breakdown-row-value">{{ tournament?.buyin.regularPool }}</p>
+               </div>
+               <div class="tournament-breakdown-row">
+                  <p class="tournament-breakdown-row-key">Bounty pool</p>
+                  <p class="tournament-breakdown-row-value">{{ tournament?.buyin.bountyPool }}</p>
+               </div>
+               <div class="tournament-breakdown-row">
+                  <p class="tournament-breakdown-row-key">Rake</p>
+                  <p class="tournament-breakdown-row-value">{{ tournament?.buyin.rake }}</p>
+               </div>
+            </div>
+         </div>
+         <hr>
+         <div class="play-tournament-schedule">
+            <div class="play-tournament-date">
+               <h3 class="sidebar-subtitle">Proposed date</h3>
+               <p class="play-tournament-proposed-date">
+                  <i class="far fa-calendar-alt"></i> 
+                  {{ today | date:'EEE, LLL dd' }} at {{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0' }}
+               </p>
+            </div>
+            <div class="play-tournament-button">
+               <button type="button" class="btn btn-default">Play tournament</button>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
