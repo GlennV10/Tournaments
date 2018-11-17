@@ -1,20 +1,25 @@
 export class Tournament {
-   _id: string;
-   pokerroom: string;
-   name: string;
-   buyin: number;
-   prizePool: number;
-   speed: string;
-   tableSize: number;
+   _id: String;
+   pokerroom: String;
+   name: String;
+   buyin: {
+      total: Number;
+      regularPool: Number;
+      bountyPool: Number;
+      rake: Number;
+   };
+   prizePool: Number;
+   speed: String;
+   tableSize: Number;
    time: {
-      hour: number;
-      minute: number;
+      hour: Number;
+      minute: Number;
    };
    lateRegistration: {
-      hour: number;
-      minute: number;
+      hour: Number;
+      minute: Number;
    };
-   days: [string];
-   formats: [string];
-   reEntries: number;
+   days: [String];
+   formats: [String];
+   reEntries: Number;
 }

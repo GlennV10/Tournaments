@@ -39,6 +39,9 @@
 .tournament-name {
    font-size: .8rem;
    font-weight: 700;
+   white-space: nowrap; 
+   overflow: hidden;
+   text-overflow: ellipsis; 
 }
 
 .tournament-time {
@@ -83,9 +86,9 @@
 }
 
 .tournament-info-subtitle {
-   font-size: .55rem;
+   font-size: .65rem;
    color: hsl(0, 0%, 66%);
-   text-transform: uppercase;
+   /* text-transform: uppercase; */
 }
 
 /* Tournament buttons */
@@ -279,17 +282,26 @@
 /* General */
 .starting-tournaments-container {
    margin-top: 60px;
+   width: 300px;
 }
 
 /* Starting tournament */
 .starting-tournament {
    display: flex;
+   width: inherit;
    margin-top: 15px;
+}
+
+.starting-tournament-info-container {
+   width: calc(300px - 1rem - 22px);
 }
 
 .starting-tournament-name {
    font-size: .9rem;
    font-weight: 600;
+   white-space: nowrap; 
+   overflow: hidden;
+   text-overflow: ellipsis; 
 }
 
 .starting-tournament-time {

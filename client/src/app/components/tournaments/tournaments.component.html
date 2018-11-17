@@ -6,14 +6,14 @@
                                           | filterSpeed : speeds">
          <div class="tournament-name-container">
             <p class="tournament-name">{{ tournament.name }}</p>
-            <p class="tournament-time"><i class="far fa-clock"></i> {{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0' }}</p>
+            <p class="tournament-time"><i class="far fa-clock"></i> Starts at {{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0' }}</p>
          </div>
          <div class="tournament-info-container">
             <div class="tournament-pokerroom-container">
                <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg"> {{ tournament.pokerroom }}
             </div>
             <div class="tournament-buyin-container">
-               <p class="tournament-buyin">${{ tournament.buyin | number : '1.2-2' }}</p>
+               <p class="tournament-buyin">${{ tournament.buyin.total | number : '1.2-2' }}</p>
                <p class="tournament-info-subtitle">Buyin</p>
             </div>
          </div>

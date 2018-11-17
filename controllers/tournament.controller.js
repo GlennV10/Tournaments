@@ -9,13 +9,13 @@ const Tournament = require('../models/Tournament');
  */
 /* === GET === */
 exports.getTournamentById = (req, res, next) => {
-   Tournament.findOne({      
+   Tournament.findOne({
       _id: req.params.id
    })
-   .then((tournament) => {
-      res.json(tournament);
-   })
-   .catch(next);
+      .then((tournament) => {
+         res.json(tournament);
+      })
+      .catch(next);
 };
 
 exports.getAllTournaments = (req, res, next) => {
@@ -27,7 +27,8 @@ exports.getAllTournaments = (req, res, next) => {
       .catch(next);
 };
 
-exports.getStartingTournaments = async (req, res, next) => {
+/* REFACTOR */
+exports.getStartingTournaments = (req, res, next) => {
    let hour = moment().hour();
    let minute = moment().minute();
 
@@ -38,19 +39,24 @@ exports.getStartingTournaments = async (req, res, next) => {
 
       if (startingTournaments.length > 4) {
          startingTournaments.length = 4;
+
+         getRemainingTime(startingTournaments, minute)
+         .then(tournaments => {
+            res.json(tournaments);
+         });
       } else {
          Tournament.find({})
          .sort({ time: 1 })
          .limit(4 - startingTournaments.length)
          .then((tournaments) => {
             startingTournaments = startingTournaments.concat(tournaments);
+
+            getRemainingTime(startingTournaments, minute)
+            .then(tournaments => {
+               res.json(tournaments);
+            });
          });
       }
-
-      getRemainingTime(startingTournaments, minute)
-      .then(tournaments => {
-         res.json(tournaments);
-      });
    })
    .catch(next);
 };
@@ -95,13 +101,13 @@ exports.deleteTournament = (req, res, next) => {
 /** 
  * Helper functions
  */
-getRemainingTime = async (tournaments, time) => {
+const getRemainingTime = (tournaments, time) => {
    return new Promise((resolve, reject) => {
       if (tournaments) {
          let startingTournaments = [];
          for (let tournament of tournaments) {
             newTournament = { tournament, startsIn: 0 };
-   
+
             if (tournament.time.minute > time) {
                newTournament.startsIn = tournament.time.minute - time;
             } else {

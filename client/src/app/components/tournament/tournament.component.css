@@ -19,11 +19,69 @@
    box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
 }
 
+.play-tournament-container > hr {   
+   display: block;
+   height: 1px;
+   border: 0;
+   border-top: 1px solid hsl(0, 0%, 92%);
+   padding: 0;
+   margin: 25px 0;
+}
+
 /* Info */
+/* Info top*/
+.tournament-info-total-key {
+   color: hsl(0, 0%, 55%);
+   font-size: .9rem;
+}
+
+.tournament-info-total-value {
+   font-weight: 600;
+   font-size: 2.2rem;
+}
+
+/* Info bottom*/
+.play-tournament-info-breakdown {
+   margin-top: 25px;
+}
+
+.tournament-breakdown-row {
+   display: flex;
+   justify-content: space-between;
+   margin-top: 10px;
+}
+
+.tournament-breakdown-row-key {
+   color: hsl(0, 0%, 66%);
+   font-size: .80rem;
+}
+
+.tournament-breakdown-row-value {
+   color: hsl(0, 0%, 45%);
+   font-size: .80rem;
+   font-weight: 600;
+}
 
 /* Date */
+.play-tournament-date {
+   margin-bottom: 25px;
+}
+
+.sidebar-subtitle {   
+   color: hsl(0, 0%, 66%);
+   font-size: .80rem;
+}
+
+.play-tournament-proposed-date {
+   color: hsl(0, 0%, 45%);
+   font-size: .80rem;
+   font-weight: 600;
+   margin-top: 5px;
+}
 
 .btn {
    width: 100%;
    padding: 10px;
+   font-size: .9rem;
+   letter-spacing: 1px;
 }
