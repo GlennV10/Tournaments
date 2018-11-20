@@ -6,7 +6,7 @@
 
       <div class="tournament-header-container">
          <div class="tournament-logo-container">
-            <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
+            <img class="tournament-pokerroom-logo" src="../../../assets/images/PokerStars_emblem.svg">
          </div>
          <div class="tournament-info-container">
             <p class="tournament-name">{{ tournament.name }}</p>
@@ -20,20 +20,20 @@
          <div class="play-tournament-info">
             <div class="play-tournament-info-total">
                <p class="tournament-info-total-key">Buyin</p>
-               <p class="tournament-info-total-value">${{ tournament?.buyin.total | number : '1.2-2' }}</p>
+               <p class="tournament-info-total-value">${{ tournament.buyin.total | number : '1.2-2' }}</p>
             </div>
             <div class="play-tournament-info-breakdown">
                <div class="tournament-breakdown-row">
                   <p class="tournament-breakdown-row-key">Regular prize pool</p>
-                  <p class="tournament-breakdown-row-value">${{ tournament?.buyin.regularPool | number : '1.2-2' }}</p>
+                  <p class="tournament-breakdown-row-value">${{ tournament.buyin.regularPool | number : '1.2-2' }}</p>
                </div>
-               <div class="tournament-breakdown-row">
+               <div class="tournament-breakdown-row" *ngIf="tournament.buyin.bountyPool">
                   <p class="tournament-breakdown-row-key">Bounty pool</p>
-                  <p class="tournament-breakdown-row-value">${{ tournament?.buyin.bountyPool | number : '1.2-2' }}</p>
+                  <p class="tournament-breakdown-row-value">${{ tournament.buyin.bountyPool | number : '1.2-2' }}</p>
                </div>
                <div class="tournament-breakdown-row">
                   <p class="tournament-breakdown-row-key">Rake</p>
-                  <p class="tournament-breakdown-row-value">${{ tournament?.buyin.rake | number : '1.2-2' }}</p>
+                  <p class="tournament-breakdown-row-value">${{ tournament.buyin.rake | number : '1.2-2' }}</p>
                </div>
             </div>
          </div>

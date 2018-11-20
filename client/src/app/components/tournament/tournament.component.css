@@ -1,12 +1,66 @@
 /* General */
 .content-wrapper {
-   padding: 0 100px;
    display: grid;
    grid-template-columns: calc(100% - 360px) 300px;
    grid-column-gap: 60px;
 }
 
 /* ======= TOURNAMENT ======= */
+/* Back link */
+.tournament-back-link {
+   text-decoration: none;
+   outline: none;
+   color: hsl(0, 0%, 29%);
+   font-weight: 600;
+   font-size: .9rem;
+}
+
+.tournament-back-link > i {
+   margin-right: 10px;
+}
+
+/* Tournament header */
+.tournament-header-container {
+   display: flex;
+   margin-top: 30px;
+}
+
+/* Pokerroom logo */
+.tournament-logo-container {
+   background-color: hsl(0, 0%, 92%);
+   border-radius: 50%;
+   width: 70px;
+   height: 70px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.tournament-pokerroom-logo {
+   width: 2rem;
+}
+
+/* Tournament info */
+.tournament-info-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   margin-left: 30px;
+}
+
+.tournament-name {
+   font-size: 1.2rem;
+   font-weight: 600;
+}
+
+.tournament-pokerroom {
+   color: hsl(0, 0%, 45%);
+}
+
+.tournament-pokerroom > i {
+   font-size: .9rem;
+   margin-right: 10px;
+}
 
 
 /* ======= PLAY/SIDEBAR ======= */
