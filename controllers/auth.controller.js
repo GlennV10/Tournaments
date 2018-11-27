@@ -18,7 +18,7 @@ exports.registerUser = (req, res, next) => {
    addUser(newUser, (err, user) => {
       if (err) next({ message: 'Fill in all fields.' });
       if (!user) next({ message: 'Failed to register.' });
-      if (user) res.json({ success: true, message: 'User registered', user })
+      if (user) res.json({ success: true, message: 'User registered', user });
    });
 };
 

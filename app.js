@@ -27,7 +27,7 @@ mongoose.connection.on('error', (err) => {
 
 /* === Middleware === */
 /* CORS */
-app.use(cors());
+app.use(cors({ origin: ['http://localhost:4200'], credentials: true }));
 
 /* Body-parser */
 app.use(bodyParser.urlencoded({ extended: false }));

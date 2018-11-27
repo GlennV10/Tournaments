@@ -6,6 +6,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { TournamentComponent } from './components/tournament/tournament.component';
 import { TournamentsComponent } from './components/tournaments/tournaments.component';
@@ -13,7 +16,11 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { SessionComponent } from './components/session/session.component';
 import { ResultsComponent } from './components/results/results.component';
 
+import { AuthService } from './services/auth/auth.service';
 import { TournamentService } from './services/tournament/tournament.service';
+
+import { AuthGuard } from './guards/auth.guard';
+import { NotAuthGuard } from './guards/not-auth.guard';
 
 import { BuyinFilterPipe } from './shared/pipes/buyin-filter.pipe';
 import { SpeedFilterPipe } from './shared/pipes/speed-filter.pipe';
@@ -22,6 +29,9 @@ import { SpeedFilterPipe } from './shared/pipes/speed-filter.pipe';
    declarations: [
       AppComponent,
       NavbarComponent,
+      HomeComponent,
+      RegisterComponent,
+      LoginComponent,
       DashboardComponent,
       TournamentComponent,
       TournamentsComponent,
@@ -37,7 +47,7 @@ import { SpeedFilterPipe } from './shared/pipes/speed-filter.pipe';
       HttpClientModule,
       AppRoutingModule
    ],
-   providers: [TournamentService, BuyinFilterPipe, SpeedFilterPipe],
+   providers: [AuthService, TournamentService, AuthGuard, NotAuthGuard, BuyinFilterPipe, SpeedFilterPipe],
    bootstrap: [AppComponent]
 })
 export class AppModule { }
