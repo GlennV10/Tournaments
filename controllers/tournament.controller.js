@@ -12,19 +12,19 @@ exports.getTournamentById = (req, res, next) => {
    Tournament.findOne({
       _id: req.params.id
    })
-      .then((tournament) => {
-         res.json(tournament);
-      })
-      .catch(next);
+   .then((tournament) => {
+      res.json(tournament);
+   })
+   .catch(next);
 };
 
 exports.getAllTournaments = (req, res, next) => {
    Tournament.find({})
-      .sort({ time: 1 })
-      .then((tournaments) => {
-         res.json(tournaments);
-      })
-      .catch(next);
+   .sort({ time: 1 })
+   .then((tournaments) => {
+      res.json(tournaments);
+   })
+   .catch(next);
 };
 
 /* REFACTOR */

@@ -26,9 +26,10 @@ const TournamentSchema = new Schema({
       bountyPool: {
          type: Number,
          min: 0,
-         required: function() { return this.formats.includes('Progressive Knockout') || 
-                                          this.formats.includes('Bounty Builder') ||
-                                          this.formats.includes('Knockout') }
+         required: function() { 
+            return this.formats.includes('Progressive Knockout') || 
+               this.formats.includes('Bounty Builder') ||
+               this.formats.includes('Knockout') }
       },
       rake: {
          type: Number,

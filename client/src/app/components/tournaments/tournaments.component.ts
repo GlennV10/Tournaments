@@ -37,7 +37,6 @@ export class TournamentsComponent implements OnInit {
       this.tournamentService.getTournaments()
          .subscribe(tournaments => {
             this.tournaments = tournaments
-            console.log(tournaments);
          });
    }
 

@@ -188,8 +188,9 @@
 
 .buyin-value {
    text-align: right;   
-   font-size: .77rem;
-   color: hsl(0, 0%, 66%);
+   font-size: .70rem;
+   font-weight: 600;
+   color: hsl(0, 0%, 55%);
 }
 
 /* === Tags === */
@@ -208,7 +209,7 @@
 }
 
 .tag-name {
-   font-size: .55rem;
+   font-size: .6rem;
    font-weight: 700;
    text-align: center;
 }
