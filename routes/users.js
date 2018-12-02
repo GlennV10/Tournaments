@@ -15,8 +15,8 @@ router.get('/profile', authenticated, userController.getUserProfile);
 /* GET-request to get Scheduled Tournaments */
 router.get('/schedule', authenticated, userController.getUserSchedule);
 
-/* PUT-request to add Tournament to schedule */
-router.put('/schedule', authenticated, userController.addTournamentToSchedule);
+/* POST-request to add Tournament to schedule */
+router.post('/schedule', authenticated, userController.addTournamentToSchedule);
 
 /* DELETE-request to remove Tournament from schedule */
 router.delete('/schedule/:id', authenticated, userController.deleteTournamentFromSchedule);

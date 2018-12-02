@@ -9,8 +9,7 @@ body {
    background-color: hsl(0, 0%, 97%);
    overflow-y: scroll;
    margin: 0 auto;
-   width: 70%;
-   min-width: 900px;
+   width: 1340px;
    padding: 0 30px;
    color: hsl(0, 0%, 29%);
    letter-spacing: .9px;
@@ -79,7 +78,7 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .btn-default {
-   color: hsl(133, 44%, 95%);
+   color: hsl(133, 44%, 98%);
    background-color: hsl(133, 44%, 51%);
 }
 

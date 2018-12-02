@@ -1,7 +1,7 @@
 /* General */
 .content-wrapper {
    display: grid;
-   grid-template-columns: calc(100% - 360px) 300px;
+   grid-template-columns: calc(100% - 380px) 320px;
    grid-column-gap: 60px;
 }
 
@@ -27,7 +27,7 @@
 
 /* Pokerroom logo */
 .tournament-logo-container {
-   background-color: hsl(0, 0%, 92%);
+   background-color: hsl(0, 0%, 95%);
    border-radius: 50%;
    width: 70px;
    height: 70px;

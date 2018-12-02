@@ -16,14 +16,15 @@
 
 /* General*/
 .tournament {
-   display: flex;   
+   display: grid;   
+   grid-template-columns: auto max-content max-content;
    padding: 10px 22px;
-   margin-bottom: 8px;
-   /*width: 100%;  ??? Why acting strange */
+   margin-bottom: 10px;
+   /* width: 100%;  ??? Why acting strange */
    background-color: hsl(0, 0%, 100%);
-   /* -webkit-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
-   -moz-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
-   box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05); */
+   -webkit-box-shadow: 0 1.8px 4px 0 hsla(0, 0%, 0%, 0.02);
+   -moz-box-shadow: 0 1.8px 4px 0 hsla(0, 0%, 0%, 0.02);
+   box-shadow: 0 1.8px 4px 0 hsla(0, 0%, 0%, 0.02);
    outline: none;
 }
 
@@ -33,27 +34,20 @@
    flex-direction: column;
    justify-content: center;
    align-items: flex-start;
-   width: 100%;
+   width: inherit;
+   padding-right: 10px;
+   white-space: nowrap; 
+   overflow: hidden;
+   text-overflow: ellipsis;
 }
 
 .tournament-name {
    font-size: .8rem;
-   font-weight: 700;
+   font-weight: 600;
+   width: 100%;
    white-space: nowrap; 
    overflow: hidden;
-   text-overflow: ellipsis; 
-}
-
-.tournament-time {
-   font-size: .80rem;
-   color: hsl(0, 0%, 45%);
-}
-
-/* Info */
-.tournament-info-container {
-   display: flex;
-   padding-left: 22px;
-   border-left: 2px solid hsl(0, 0%, 97%);
+   text-overflow: ellipsis;
 }
 
 /* Poker room */
@@ -63,16 +57,22 @@
    align-items: center;
    margin-right: 22px;
    font-size: .85rem;
-   font-weight: 600;
+   color: hsl(0, 0%, 45%);
 }
 
 .tournament-pokerroom {
-   width: 1rem;
+   width: .8rem;
    margin-right: 5px;
 }
 
-/* Buyin  */
-.tournament-buyin-container {
+/* Info */
+.tournament-info-container {
+   display: flex;
+   border-left: 2px solid hsl(0, 0%, 97%);
+}
+
+/* Buyin & Time */
+.tournament-buyin-container, .tournament-time-container {
    display: flex;
    flex-direction: column;
    justify-content: center;
@@ -80,27 +80,32 @@
    width: 100px;
 }
 
-.tournament-buyin {
+.tournament-buyin, .tournament-time {
    font-size: .85rem;
    font-weight: 600;
+}
+
+.tournament-time > span {
+   font-size: .70rem;
+   font-weight: initial;
 }
 
 .tournament-info-subtitle {
    font-size: .65rem;
    color: hsl(0, 0%, 66%);
-   /* text-transform: uppercase; */
 }
 
 /* Tournament buttons */
 .tournament-button-container {
    display: flex;
-   width: 220px;
+   justify-content: flex-end;
    padding-left: 22px;
    border-left: 2px solid hsl(0, 0%, 97%);
 }
 
 .btn-details {
    margin-right: 10px;
+   width: max-content;
 }
 
 .btn-details > i {
@@ -161,10 +166,11 @@
 .slider-buyin::-webkit-slider-thumb {
    -webkit-appearance: none; /* Override default look */
    appearance: none;
-   width: 10px; /* Set a specific slider handle width */
-   height: 10px; /* Slider handle height */
+   width: 15px; /* Set a specific slider handle width */
+   height: 15px; /* Slider handle height */
    border-radius: 50%;
-   background: hsl(133, 44%, 51%);; /* Green background */
+   border: 1.5px solid hsl(133, 44%, 51%);
+   background: hsl(0, 0%, 100%);
    cursor: pointer; /* Cursor on hover */
 }
 
@@ -172,7 +178,7 @@
    width: 10px; /* Set a specific slider handle width */
    height: 10px; /* Slider handle height */
    border-radius: 50%;
-   background: hsl(133, 44%, 51%);; /* Green background */
+   background: hsl(133, 44%, 51%); /* Green background */
    cursor: pointer; /* Cursor on hover */
 }
 
@@ -291,6 +297,11 @@
    display: flex;
    width: inherit;
    margin-top: 15px;
+}
+
+.starting-tournament-pokerroom {
+   width: 1rem;
+   margin-right: 5px;
 }
 
 .starting-tournament-info-container {

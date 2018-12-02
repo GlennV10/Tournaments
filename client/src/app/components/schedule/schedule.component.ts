@@ -1,15 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Tournament } from '../../shared/models/tournaments/tournament.model';
+
+import { UserService } from '../../services/user/user.service';
+
 @Component({
-  selector: 'app-schedule',
-  templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.css']
+   selector: 'app-schedule',
+   templateUrl: './schedule.component.html',
+   styleUrls: ['./schedule.component.css']
 })
 export class ScheduleComponent implements OnInit {
+   private schedule: Tournament[];
 
-  constructor() { }
+   constructor(
+      private userService: UserService
+   ) { }
 
-  ngOnInit() {
-  }
+   ngOnInit() {
+      this.getSchedule();
+   }
+
+   getSchedule(): void {
+      this.userService.getSchedule()
+         .subscribe(schedule => {
+            this.schedule = schedule;
+         });
+   }
 
 }

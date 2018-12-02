@@ -15,9 +15,9 @@ import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/not-auth.guard';
 
 const appRoutes: Routes = [
-   { path: '', component: HomeComponent, canActivate:[NotAuthGuard]},
-   { path: 'register', component: RegisterComponent, canActivate:[NotAuthGuard]},
-   { path: 'login', component: LoginComponent, canActivate:[NotAuthGuard]},
+   { path: '', component: HomeComponent, canActivate:[NotAuthGuard] },
+   { path: 'register', component: RegisterComponent, canActivate:[NotAuthGuard] },
+   { path: 'login', component: LoginComponent, canActivate:[NotAuthGuard] },
    { path: 'dashboard', component: DashboardComponent, canActivate:[AuthGuard] },
    { path: 'tournaments', component: TournamentsComponent, canActivate:[AuthGuard] },
    { path: 'tournaments/:id', component: TournamentComponent, canActivate:[AuthGuard] },

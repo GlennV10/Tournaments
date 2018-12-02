@@ -49,6 +49,10 @@ exports.logoutUser = (req, res, next) => {
    });
 };
 
+exports.getStatus = (req, res, next) => {
+   res.json(req.isAuthenticated());
+};
+
 /**
  * Helper functions
  */

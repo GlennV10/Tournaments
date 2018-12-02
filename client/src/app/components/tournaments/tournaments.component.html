@@ -1,4 +1,4 @@
-<div *ngIf="tournaments && startingTournaments" class="content-wrapper">
+<div *ngIf="tournaments && startingTournaments && userSchedule" class="content-wrapper">
    <div class="tournaments-container">
       <h1 class="page-title"><span>{{ (tournaments | filterBuyin : minBuyin : maxBuyin | filterSpeed : speeds)?.length }}</span> tournaments found</h1>
       <div class="tournament" *ngFor="let tournament of tournaments 
@@ -6,11 +6,14 @@
                                           | filterSpeed : speeds">
          <div class="tournament-name-container">
             <p class="tournament-name">{{ tournament.name }}</p>
-            <p class="tournament-time"><i class="far fa-clock"></i> Starts at {{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0' }}</p>
-         </div>
-         <div class="tournament-info-container">
             <div class="tournament-pokerroom-container">
                <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg"> {{ tournament.pokerroom }}
+            </div>
+         </div>
+         <div class="tournament-info-container">
+            <div class="tournament-time-container">
+               <p class="tournament-time">{{ tournament.time.hour | number : '2.0-0' }}<span>:{{ tournament.time.minute | number : '2.0-0' }}</span></p>
+               <p class="tournament-info-subtitle">Time</p>
             </div>
             <div class="tournament-buyin-container">
                <p class="tournament-buyin">${{ tournament.buyin.total | number : '1.2-2' }}</p>
@@ -19,10 +22,10 @@
          </div>
          <div class="tournament-button-container">
             <button type="button" name="button" class="btn btn-details" [routerLink]="['/tournaments', tournament._id]"><i class="fas fa-info-circle"></i> Details</button>            
-            <button *ngIf="1===1" type="button" name="button" class="btn btn-favourite" (click)="scheduleTournament(tournament._id)">
+            <button *ngIf="!includes(tournament)" type="button" name="button" class="btn btn-favourite" (click)="addTournamentToSchedule(tournament._id)">
                <i class="far fa-star"></i>
             </button>
-            <button *ngIf="1 === 2" type="button" name="button" class="btn btn-favourite" (click)="unscheduleTournament(tournament._id)">
+            <button *ngIf="includes(tournament)" type="button" name="button" class="btn btn-favourite" (click)="deleteTournamentFromSchedule(tournament._id)">
                <i class="fas fa-star"></i>
             </button>
          </div>
@@ -34,17 +37,17 @@
          <h2 class="sidebar-title">Filters</h2>
          <div class="buyin-container">
             <div class="slider-buyin-container">           
-                  <div class="buyin-stats">
-                     <p class="buyin">Minimum</p>
-                     <p class="buyin-value">${{ minBuyin.level | number : '1.2-2'  }}</p>
-                  </div>
+               <div class="buyin-stats">
+                  <p class="buyin">Minimum</p>
+                  <p class="buyin-value">${{ minBuyin.level | number : '1.2-2'  }}</p>
+               </div>
                <input type="range" class="slider-buyin" min="0" max="{{ buyins.length - 1}}" step="1" value="{{ minBuyin.step }}" (input)="onMinBuyinChange($event)">
             </div>
             <div class="slider-buyin-container">           
-                  <div class="buyin-stats">
-                     <p class="buyin">Maximum</p>
-                     <p class="buyin-value">${{ maxBuyin.level | number : '1.2-2' }}</p>
-                  </div>
+               <div class="buyin-stats">
+                  <p class="buyin">Maximum</p>
+                  <p class="buyin-value">${{ maxBuyin.level | number : '1.2-2' }}</p>
+               </div>
                <input type="range" class="slider-buyin" min="0" max="{{ buyins.length - 1 }}" step="1" value="{{ maxBuyin.step }}" (input)="onMaxBuyinChange($event)">
             </div>
          </div>
@@ -60,7 +63,7 @@
 
          <div class="starting-tournament" *ngFor="let tournament of startingTournaments">           
             <div class="tournament-pokerroom-container">
-               <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
+               <img class="starting-tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg">
             </div>
             <div class="starting-tournament-info-container">
                <p class="starting-tournament-name">{{ tournament.tournament.name }}</p>

@@ -36,7 +36,6 @@ export class RegisterComponent implements OnInit {
          if (data['success']) {
             this.router.navigate(['/login']);
          } else {
-            console.log(data['error']);
             this.router.navigate(['/register']);
          }
       });
