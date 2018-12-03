@@ -13,6 +13,19 @@
             <p class="tournament-pokerroom"><i class="fas fa-map-marker-alt"></i> {{ tournament.pokerroom }}</p>
          </div>
       </div>
+
+      <div class="tournament-body-container">
+         <h2 class="tournament-schedule-title"><span>T</span>ournament schedule</h2>
+         <div class="tournament-schedule-container">
+            <div *ngFor="let day of days" class="tournament-day-container">
+               <p  class="tournament-day">{{ day.substring(0, 2) }}</p>
+               <p *ngIf="tournament.days.includes(day)" class="tournament-day-played">
+                  Played at {{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0' }}
+               </p>
+               <p *ngIf="!tournament.days.includes(day)" class="tournament-day-played">X</p>
+            </div>
+         </div>
+      </div>
    </div>
 
    <div class="sidebar-container">
@@ -37,15 +50,16 @@
                </div>
             </div>
          </div>
-         
+
          <hr class="separator">
 
          <div class="play-tournament-schedule">
             <div class="play-tournament-date">
                <p class="sidebar-subtitle">Proposed date</p>
                <p class="play-tournament-proposed-date">
-                  <i class="far fa-calendar-alt"></i> 
-                  {{ today | date:'EEE, LLL dd' }} at {{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0' }}
+                  <i class="far fa-calendar-alt"></i>
+                  {{ today | date:'EEE, LLL dd' }} at 
+                  {{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0'}}
                </p>
             </div>
             <div class="play-tournament-button">

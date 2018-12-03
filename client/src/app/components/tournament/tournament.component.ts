@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Tournament } from '../../shared/models/tournaments/tournament.model';
+import { Days } from '../../shared/data/days.data'; 
+
 import { TournamentService } from '../../services/tournament/tournament.service';
 
 @Component({
@@ -12,6 +14,7 @@ import { TournamentService } from '../../services/tournament/tournament.service'
 export class TournamentComponent implements OnInit {
    private tournament: Tournament;
    private today: Number;
+   private days: Object[] = Days;
 
    constructor(
       private router: Router,

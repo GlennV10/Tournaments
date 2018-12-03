@@ -62,6 +62,42 @@
    margin-right: 10px;
 }
 
+/* Body */
+.tournament-body-container {
+   margin-top: 50px;
+}
+
+.tournament-schedule-title {
+   margin-bottom: 15px;
+   font-size: .7rem;
+   font-weight: 600;
+   color: hsl(0, 0%, 45%);
+   text-transform: uppercase;
+   letter-spacing: initial;
+}
+
+.tournament-schedule-title > span {
+   font-size: .8rem;
+}
+
+/* Tournament schedule */
+.tournament-schedule-container {
+}
+
+.tournament-day-container {
+}
+
+.tournament-day-played, .tournament-day-not-played {
+}
+
+.tournament-day-played > .tournament-day {
+}
+
+.tournament-day-not-played > .tournament-day {
+}
+
+.tournament-day {   
+}
 
 /* ======= PLAY/SIDEBAR ======= */
 /* General */
