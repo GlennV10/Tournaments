@@ -15,14 +15,19 @@
       </div>
 
       <div class="tournament-body-container">
-         <h2 class="tournament-schedule-title"><span>T</span>ournament schedule</h2>
          <div class="tournament-schedule-container">
-            <div *ngFor="let day of days" class="tournament-day-container">
-               <p  class="tournament-day">{{ day.substring(0, 2) }}</p>
-               <p *ngIf="tournament.days.includes(day)" class="tournament-day-played">
-                  Played at {{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0' }}
-               </p>
-               <p *ngIf="!tournament.days.includes(day)" class="tournament-day-played">X</p>
+            <h2 class="tournament-info-title"><i class="far fa-calendar-alt"></i>Tournament schedule</h2>
+            <div class="tournament-schedule-info">
+               <p class="tournament-days">{{ tournament.days.slice(0, -1).join(', ') }} and {{ tournament.days.slice(-1) }}</p>
+               <p class="tournament-time">Starts at {{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0' }}</p>
+            </div>
+         </div>
+         <div class="tournament-format-container">
+            <h2 class="tournament-info-title"><i class="fas fa-cogs"></i>Tournament formats</h2>
+            <div class="tournament-format-tag-container">
+               <div *ngFor="let format of tournament.formats" class="tournament-format-tag">
+                  <p class="tournament-format">{{ format }}</p>
+               </div>
             </div>
          </div>
       </div>

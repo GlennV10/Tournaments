@@ -67,36 +67,61 @@
    margin-top: 50px;
 }
 
-.tournament-schedule-title {
+.tournament-info-title {
    margin-bottom: 15px;
-   font-size: .7rem;
-   font-weight: 600;
+   font-size: .8rem;
    color: hsl(0, 0%, 45%);
-   text-transform: uppercase;
-   letter-spacing: initial;
 }
 
-.tournament-schedule-title > span {
+.tournament-info-title > i {
+   font-size: .8rem;
+   margin-right: 10px;
+}
+
+.tournament-info-title > span {
    font-size: .8rem;
 }
 
 /* Tournament schedule */
-.tournament-schedule-container {
+.tournament-schedule-info {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
 }
 
-.tournament-day-container {
+.tournament-days {
+   color: hsl(0, 0%, 45%);
+   font-size: .9rem;
+   font-weight: 600;
 }
 
-.tournament-day-played, .tournament-day-not-played {
+.tournament-time {
+   color: hsl(0, 0%, 66%);
+   font-size: .9rem;
 }
 
-.tournament-day-played > .tournament-day {
+/* Tournament formats */
+.tournament-format-container {
+   margin-top: 50px;
 }
 
-.tournament-day-not-played > .tournament-day {
+.tournament-format-tag-container {
+   display: flex;
+   flex-flow: row wrap;
 }
 
-.tournament-day {   
+.tournament-format-tag {
+   background-color: hsl(0, 0%, 75%);
+   padding: 7px 22px;
+   border-radius: 5px;
+   margin-right: 15px;
+}
+
+.tournament-format {
+   color: hsl(0, 0%, 100%);
+   font-size: .8rem;
+   font-weight: 600;
 }
 
 /* ======= PLAY/SIDEBAR ======= */
