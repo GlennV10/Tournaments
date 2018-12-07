@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
    onLoginSubmit() {
       this.authService.loginUser(this.username, this.password).subscribe(data => {
          if (data['success']) {
+            this.authService.getEmitter().emit(data['user']);
             this.router.navigate(['/dashboard']);
          } else {
             this.router.navigate(['/login']);

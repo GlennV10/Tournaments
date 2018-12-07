@@ -1,13 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
+
+import { User } from '../../shared/models/users/user.model';
 
 @Injectable({
    providedIn: 'root'
 })
 export class AuthService {
-   private api: String = 'http://localhost:3000';   
+   private api: String = 'http://localhost:3000';
    private loggedIn: Boolean = false;
+   
+   @Output() user: EventEmitter<User> = new EventEmitter<User>();
 
    constructor(
       private http: HttpClient
@@ -42,4 +46,7 @@ export class AuthService {
       this.loggedIn = value;
    }
 
+   getEmitter() {
+      return this.user;
+   }
 }

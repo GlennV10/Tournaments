@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../../services/auth/auth.service';
@@ -18,7 +18,9 @@ export class NavbarComponent implements OnInit {
    ) { }
 
    ngOnInit() {
-      this.name = 'Glenn Verlinden'
+      this.authService.getEmitter().subscribe((user) => {
+         this.name = `${user.firstname} ${user.lastname}`;
+      });
       this.avatar = '/assets/images/default_picture.png';
    }
 
