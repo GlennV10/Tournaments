@@ -5,6 +5,7 @@ import { Tournament } from '../../shared/models/tournaments/tournament.model';
 import { Days } from '../../shared/data/days.data'; 
 
 import { TournamentService } from '../../services/tournament/tournament.service';
+import { ResultService } from '../../services/result/result.service';
 
 @Component({
    selector: 'app-tournament',
@@ -19,7 +20,8 @@ export class TournamentComponent implements OnInit {
    constructor(
       private router: Router,
       private activatedRoute: ActivatedRoute,
-      private tournamentService: TournamentService
+      private tournamentService: TournamentService,
+      private resultService: ResultService
    ) { }
 
    ngOnInit() {      
@@ -34,6 +36,15 @@ export class TournamentComponent implements OnInit {
       this.tournamentService.getTournament(id)
          .subscribe(tournament => {
             this.tournament = tournament;
+         });
+   }
+
+   addResult() {
+      this.resultService.addResult(this.tournament._id)
+         .subscribe(data => {
+            if (data['success']) {
+               this.router.navigate(['/results']);
+            };
          });
    }
 

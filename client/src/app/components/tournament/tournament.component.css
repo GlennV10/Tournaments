@@ -1,7 +1,7 @@
 /* General */
 .content-wrapper {
    display: grid;
-   grid-template-columns: calc(100% - 380px) 320px;
+   grid-template-columns: calc(100% - 410px) 350px;
    grid-column-gap: 60px;
 }
 
@@ -21,8 +21,8 @@
 
 /* Tournament header */
 .tournament-header-container {
-   display: flex;
    margin-top: 30px;
+   display: flex;
 }
 
 /* Pokerroom logo */
@@ -64,69 +64,44 @@
 
 /* Body */
 .tournament-body-container {
+   display: grid;
+   grid-template-columns: repeat(2, calc(50% - 5px));
+   grid-column-gap: 10px;
+   grid-row-gap: 10px;
    margin-top: 50px;
 }
 
-.tournament-info-title {
-   margin-bottom: 15px;
-   font-size: .8rem;
-   color: hsl(0, 0%, 45%);
+.tournament-schedule {
+   grid-column: 1 / 3;
+   grid-row: 1;
 }
 
-.tournament-info-title > i {
-   font-size: .8rem;
-   margin-right: 10px;
-}
-
-.tournament-info-title > span {
-   font-size: .8rem;
-}
-
-/* Tournament schedule */
-.tournament-schedule-info {
+.tournament-body-info-container {
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: flex-start;
+   padding: 5px 0;
+   padding-left: 20px;
+   border-left: 3px solid hsl(133, 44%, 51%);
 }
 
-.tournament-days {
-   color: hsl(0, 0%, 45%);
-   font-size: .9rem;
-   font-weight: 600;
-}
-
-.tournament-time {
+.tournament-body-info-title {
    color: hsl(0, 0%, 66%);
-   font-size: .9rem;
+   font-size: .80rem;
 }
 
-/* Tournament formats */
-.tournament-format-container {
-   margin-top: 50px;
-}
-
-.tournament-format-tag-container {
-   display: flex;
-   flex-flow: row wrap;
-}
-
-.tournament-format-tag {
-   background-color: hsl(0, 0%, 75%);
-   padding: 7px 22px;
-   border-radius: 5px;
-   margin-right: 15px;
-}
-
-.tournament-format {
-   color: hsl(0, 0%, 100%);
-   font-size: .8rem;
+.tournament-body-info-value {
+   margin-top: 5px;
+   color: hsl(0, 0%, 45%);
+   font-size: 1rem;
    font-weight: 600;
 }
 
 /* ======= PLAY/SIDEBAR ======= */
 /* General */
 .play-tournament-container {
+   margin-top: 30px;
    padding: 22px;
    background-color: hsl(0, 0%, 100%);
    -webkit-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);

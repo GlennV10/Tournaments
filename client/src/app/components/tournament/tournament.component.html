@@ -1,8 +1,9 @@
+<div class="tournament-back-container">
+   <a class="tournament-back-link" [routerLink]="['/tournaments']"><i class="fas fa-angle-left"></i> Back to tournaments</a>
+</div>
+
 <div *ngIf="tournament" class="content-wrapper">
    <div class="tournament-container">
-      <div class="tournament-back-container">
-         <a class="tournament-back-link" [routerLink]="['/tournaments']"><i class="fas fa-angle-left"></i> Back to tournaments</a>
-      </div>
 
       <div class="tournament-header-container">
          <div class="tournament-logo-container">
@@ -15,21 +16,27 @@
       </div>
 
       <div class="tournament-body-container">
-         <div class="tournament-schedule-container">
-            <h2 class="tournament-info-title"><i class="far fa-calendar-alt"></i>Tournament schedule</h2>
-            <div class="tournament-schedule-info">
-               <p class="tournament-days">{{ tournament.days.slice(0, -1).join(', ') }} and {{ tournament.days.slice(-1) }}</p>
-               <p class="tournament-time">Starts at {{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0' }}</p>
-            </div>
-         </div>
-         <div class="tournament-format-container">
-            <h2 class="tournament-info-title"><i class="fas fa-cogs"></i>Tournament formats</h2>
-            <div class="tournament-format-tag-container">
-               <div *ngFor="let format of tournament.formats" class="tournament-format-tag">
-                  <p class="tournament-format">{{ format }}</p>
-               </div>
-            </div>
-         </div>
+        <div class="tournament-body-info-container tournament-schedule">
+           <p class="tournament-body-info-title">Schedule</p>
+           <p *ngIf="tournament.days.length > 1" class="tournament-body-info-value">{{ tournament.days.slice(0, -1).join(', ') }} and {{ tournament.days.slice(-1) }}</p>
+           <p *ngIf="tournament.days.length == 1" class="tournament-body-info-value">{{ tournament.days }}</p>
+         </div> 
+         <div class="tournament-body-info-container">
+            <p class="tournament-body-info-title">Time</p>
+            <p class="tournament-body-info-value">{{ tournament.time.hour | number : '2.0-0' }}:{{ tournament.time.minute | number : '2.0-0'}}</p>
+         </div> 
+        <div class="tournament-body-info-container">
+           <p class="tournament-body-info-title">Speed</p>
+           <p class="tournament-body-info-value">{{ tournament.speed }}</p>
+        </div> 
+        <div class="tournament-body-info-container">
+           <p class="tournament-body-info-title">Late registration</p>
+           <p class="tournament-body-info-value">{{ tournament.lateRegistration.hour | number : '2.0-0' }}:{{ tournament.lateRegistration.minute | number : '2.0-0'}}</p>
+        </div>
+        <div class="tournament-body-info-container">
+           <p class="tournament-body-info-title">Table size</p>
+           <p class="tournament-body-info-value">{{ tournament.tableSize }}</p>
+        </div>
       </div>
    </div>
 
@@ -68,7 +75,7 @@
                </p>
             </div>
             <div class="play-tournament-button">
-               <button type="button" class="btn btn-default">Play tournament</button>
+               <button type="button" class="btn btn-default" (click)="addResult()">Play tournament</button>
             </div>
          </div>
       </div>

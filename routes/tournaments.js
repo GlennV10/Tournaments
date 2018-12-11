@@ -1,36 +1,36 @@
 const express = require('express');
 const router = express.Router();
 
-const tournament = require('../controllers/tournament.controller');
+const tournamentController= require('../controllers/tournament.controller');
 
 /**
  * GET-requests
  */
 /* Get ALL Tournaments */
-router.get('/', tournament.getAllTournaments);
+router.get('/', tournamentController.getAllTournaments);
 
 /* Get Tournaments starting soon */
-router.get('/starting', tournament.getStartingTournaments);
+router.get('/starting', tournamentController.getStartingTournaments);
 
 /* Get ONE Tournament */
-router.get('/:id', tournament.getTournamentById);
+router.get('/:id', tournamentController.getTournamentById);
 
 /**
  * POST-requests
  */
 /* Add Tournament*/
-router.post('/', tournament.addTournament);
+router.post('/', tournamentController.addTournament);
 
 /**
  * PUT-request
  * Update a tournament
  */
-router.put('/:id', tournament.updateTournament);
+router.put('/:id', tournamentController.updateTournament);
 
 /**
  * DELETE-request
  * Delete a tournament
  */
-router.delete('/:id', tournament.deleteTournament);
+router.delete('/:id', tournamentController.deleteTournament);
 
 module.exports = router;

@@ -67,6 +67,10 @@ app.use('/api/users', users);
 const tournaments = require('./routes/tournaments');
 app.use('/api/tournaments', tournaments);
 
+/* Results */
+const results = require('./routes/results');
+app.use('/api/results', results);
+
 /* === Error Handling === */
 app.use((err, req, res, next) => {
    res.status(422).json({
