@@ -46,10 +46,36 @@ exports.addResult = (req, res, next) => {
 
 /* === PUT === */
 exports.updateResult = (req, res, next) => {
-   
+   Result.findById({ _id: req.params.id })
+   .then((result) => {
+      if (result === null) {
+         next({ success: false, message: 'Result was not found' });
+      } else if (result.payout !== undefined) {
+         next({ success: false, message: 'Result already finished' });
+      } else {
+         if (!result.user.equals(req.user._id)) {
+            next({ success: false, message: 'This is not your result' });
+         } else {
+            const { payout, bounties, position } = req.body;
+            if (payout) result.payout = payout;
+            if (bounties) result.bounties = bounties;
+            if (position) result.position = position;
+
+            result.save((err) => {
+               if (err) next(err);
+               res.json({ success: true, message: 'Result updated', result });
+            });
+         }
+      }
+   })
+   .catch(next);
 };
 
 /* === DELETE === */
 exports.deleteResult = (req, res, next) => {
-
+   Result.findByIdAndDelete({ _id: req.params.id })
+   .then((result) => { 
+      res.json({ success: true, message: 'Result deleted', result });
+   })
+   .catch(next);
 };

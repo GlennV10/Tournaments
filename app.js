@@ -74,6 +74,7 @@ app.use('/api/results', results);
 /* === Error Handling === */
 app.use((err, req, res, next) => {
    res.status(422).json({
+      success: err.success,
       error: err.message
    });
 });
