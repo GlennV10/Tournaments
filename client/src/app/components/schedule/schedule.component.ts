@@ -11,6 +11,7 @@ import { UserService } from '../../services/user/user.service';
 })
 export class ScheduleComponent implements OnInit {
    private schedule: Tournament[];
+   private today: Number;
 
    constructor(
       private userService: UserService
@@ -18,6 +19,7 @@ export class ScheduleComponent implements OnInit {
 
    ngOnInit() {
       this.getSchedule();
+      this.today = Date.now();
    }
 
    getSchedule(): void {

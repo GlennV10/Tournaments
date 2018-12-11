@@ -1,3 +1,14 @@
+<div class="tournament-schedule-title-container">
+   <p class="tournament-schedule-title">Today</p>
+   <p class="tournament-schedule-date">{{ today | date:'longDate' }}</p>
+</div>
+
+<div class="tournament-schedule-calendar-container">
+   <div class="tournament-schedule-calendar">
+      
+   </div>
+</div>
+
 <div *ngFor="let tournament of schedule">
    <p>{{ tournament.name }}</p>
 </div>

@@ -1,0 +1,12 @@
+/* Title */
+.tournament-schedule-title {
+   color: hsl(0, 0%, 55%);
+   font-size: .8rem;
+   font-weight: 600;
+   text-transform: uppercase;
+}
+
+.tournament-schedule-date {
+   font-weight: 600;
+   font-size: 1.2rem;
+}
