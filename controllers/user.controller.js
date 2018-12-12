@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
+const moment = require('moment');
 
 const User = require('../models/User');
 const Tournament = require('../models/Tournament');
@@ -26,6 +27,21 @@ exports.getUserSchedule = (req, res, next) => {
    })
    .then((user) => {
       res.json(user.schedule);
+   })
+   .catch(next);
+};
+
+exports.getWeeklyUserSchedule = (req, res, next) => {
+   User.findOne({ _id: req.user._id })
+   .populate({
+      path: 'schedule',
+      options: {
+         sort: { 'time': 1 }
+      }
+   })
+   .then((user) => {
+      const schedule = getWeeklySchedule(user);
+      res.json(schedule);
    })
    .catch(next);
 };
@@ -68,4 +84,27 @@ exports.deleteTournamentFromSchedule = (req, res, next) => {
       }
    })
    .catch(next);
+};
+
+/* Helper Functions */
+getWeeklySchedule = (user) => {
+   const weeklySchedule = [
+      { day: "Monday", date: moment().isoWeekday("Monday"), tournaments: [] },
+      { day: "Tuesday", date: moment().isoWeekday("Tuesday"), tournaments: [] },
+      { day: "Wednesday", date: moment().isoWeekday("Wednesday"), tournaments: [] },
+      { day: "Thursday", date: moment().isoWeekday("Thursday"), tournaments: [] },
+      { day: "Friday", date: moment().isoWeekday("Friday"), tournaments: [] },
+      { day: "Saturday", date: moment().isoWeekday("Saturday"), tournaments: [] },
+      { day: "Sunday", date: moment().isoWeekday("Sunday"), tournaments: [] },
+   ];
+
+   user.schedule.forEach((tournament) => {
+      weeklySchedule.forEach((day) => {
+         if (tournament.days.includes(day.day)) {
+            day.tournaments.push(tournament);
+         }
+      });
+   });
+
+   return weeklySchedule;
 };

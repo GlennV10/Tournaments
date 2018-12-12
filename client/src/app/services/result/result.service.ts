@@ -18,6 +18,7 @@ export class ResultService {
       return this.http.get<Result[]>(`${this.api}/api/results`, { withCredentials: true });
    }
 
+   /* Add Result */
    addResult(tournamentId: String): Observable<Object> {
       const result = { id: tournamentId };
       return this.http.post<Object>(`${this.api}/api/results`, result, { withCredentials: true });

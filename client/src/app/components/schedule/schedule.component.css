@@ -1,12 +1,126 @@
+/* General */
+.content-wrapper {
+   display: grid;
+   grid-template-columns: calc(100% - 310px) 250px;
+   grid-column-gap: 60px;
+}
+
 /* Title */
 .tournament-schedule-title {
    color: hsl(0, 0%, 55%);
    font-size: .8rem;
    font-weight: 600;
-   text-transform: uppercase;
 }
 
 .tournament-schedule-date {
    font-weight: 600;
    font-size: 1.2rem;
+}
+
+/* Calendar */
+/* General */
+.tournament-schedule-calendar-container {
+   margin-top: 30px;
+}
+
+.tournament-schedule-calendar {
+   display: grid;
+   grid-template-columns: auto fit-content(100%);
+}
+
+.tournament-schedule-days {
+   display: grid;
+   grid-template-columns: repeat(7, calc(100%/7));
+}
+
+.tournament-schedule-day {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin-right: 5px;
+   background-color: hsl(0, 0%, 100%);
+   -webkit-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
+   -moz-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
+   box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
+}
+
+.tournament-schedule-day:hover {
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	transition: all 0.5s;
+}
+
+.tournament-schedule-day-letter {
+   color: hsl(0, 0%, 70%);
+   font-size: .9rem;
+   margin-bottom: 5px;
+}
+
+.tournament-schedule-day-number {   
+   color: hsl(0, 0%, 27%);
+   font-weight: 700;
+   font-size: 1rem;
+}
+
+.selected-day {
+   background-color: hsl(133, 44%, 51%);
+   color: hsl(133, 44%, 97%);
+   border-radius: 50%;
+   padding: 6px;
+}
+
+/* Now */
+.tournament-schedule-now {
+   background-color: hsl(133, 44%, 51%);
+   display: flex;
+   padding: 22px 32px;
+}
+
+.tournament-schedule-now-icon-container {
+   background-color: hsl(133, 44%, 65%);
+   padding: 10px;
+   border-radius: 5px;
+}
+
+.tournament-schedule-now-icon {
+   width: 40px;
+}
+
+.tournament-schedule-now-body {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+   margin-left: 20px;
+   color: hsl(133, 44%, 95%);
+}
+
+.tournament-schedule-now-title {
+   font-weight: 700;
+}
+
+.tournament-schedule-now-subtitle {
+   font-size: .9rem;
+   color: hsl(133, 44%, 88%);
+}
+
+.tournament-schedule-now-link {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-left: 50px;
+}
+
+.tournament-schedule-now-link > a {
+   font-size: .8rem;
+   font-weight: 700;
+   color: hsl(133, 44%, 88%);
+   text-transform: uppercase;
+   cursor: pointer;
+}
+
+/* ==== SIDEBAR ==== */
+.sidebar-container {
+   background-color: blue;
 }

@@ -14,9 +14,14 @@ export class UserService {
       private http: HttpClient
    ) { }
 
-   /* Get User Schedule*/
+   /* Get User Schedule */
    getSchedule(): Observable<Tournament[]> {
       return this.http.get<Tournament[]>(`${this.api}/api/users/schedule`, { withCredentials: true });
+   }
+
+   /* Get User Weekly Schedule */
+   getWeeklySchedule(): Observable<Object[]> {
+      return this.http.get<Object[]>(`${this.api}/api/users/schedule/weekly`, { withCredentials: true });
    }
 
    /* Add Tournament to Schedule */

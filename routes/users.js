@@ -12,13 +12,19 @@ router.get('/profile', authenticated, userController.getUserProfile);
 /* ============
   User Schedule
 ============ */
-/* GET-request to get Scheduled Tournaments */
+/* GET */ 
+/* Get Scheduled Tournaments */
 router.get('/schedule', authenticated, userController.getUserSchedule);
 
-/* POST-request to add Tournament to schedule */
+/* Weekly schedule */
+router.get('/schedule/weekly', authenticated, userController.getWeeklyUserSchedule);
+
+/* POST */
+/* Add Tournament to schedule */
 router.post('/schedule', authenticated, userController.addTournamentToSchedule);
 
-/* DELETE-request to remove Tournament from schedule */
+/* DELETE */
+/* Remove Tournament from schedule */
 router.delete('/schedule/:id', authenticated, userController.deleteTournamentFromSchedule);
 
 /* Authorization middleware */

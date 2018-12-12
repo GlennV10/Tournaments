@@ -1,14 +1,39 @@
-<div class="tournament-schedule-title-container">
-   <p class="tournament-schedule-title">Today</p>
-   <p class="tournament-schedule-date">{{ today | date:'longDate' }}</p>
-</div>
+<div class="content-wrapper">
+   <div class="schedule-container">
 
-<div class="tournament-schedule-calendar-container">
-   <div class="tournament-schedule-calendar">
+      <div class="tournament-schedule-title-container">
+         <p class="tournament-schedule-title">Today</p>
+         <p class="tournament-schedule-date">{{ today | date:'longDate' }}</p>
+      </div>
       
+      <div class="tournament-schedule-calendar-container">
+         <div class="tournament-schedule-calendar">
+            <div class="tournament-schedule-days">
+               <div *ngFor="let day of weeklySchedule" class="tournament-schedule-day">
+                  <p class="tournament-schedule-day-letter">{{ day.date | date:'EEEEEE' }}</p>
+                  <p class="tournament-schedule-day-number">{{ day.date | date:'d' }}</p>
+                  <!-- <p class="tournament-schedule-month">{{ day.date | date:'MMM' }}</p> -->
+               </div>
+            </div>
+            <div class="tournament-schedule-now">
+               <div class="tournament-schedule-now-icon-container">
+                  <img src="..\..\..\assets\images\001-project-management.svg" class="tournament-schedule-now-icon">
+               </div>
+               <div class="tournament-schedule-now-body">
+                  <p class="tournament-schedule-now-title">Tournaments</p>
+                  <p class="tournament-schedule-now-subtitle">Playing right now - 2</p>
+               </div>
+               <div class="tournament-schedule-now-link">
+                  <a (click)="alert('test')">Show</a>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+      <div *ngFor="let tournament of schedule">
+         <p>{{ tournament.name }}</p>
+      </div>
    </div>
-</div>
 
-<div *ngFor="let tournament of schedule">
-   <p>{{ tournament.name }}</p>
+   <div class="sidebar-container"></div>
 </div>

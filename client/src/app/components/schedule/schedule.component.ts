@@ -11,6 +11,7 @@ import { UserService } from '../../services/user/user.service';
 })
 export class ScheduleComponent implements OnInit {
    private schedule: Tournament[];
+   private weeklySchedule: Object[];
    private today: Number;
 
    constructor(
@@ -19,6 +20,7 @@ export class ScheduleComponent implements OnInit {
 
    ngOnInit() {
       this.getSchedule();
+      this.getWeeklySchedule();
       this.today = Date.now();
    }
 
@@ -26,6 +28,14 @@ export class ScheduleComponent implements OnInit {
       this.userService.getSchedule()
          .subscribe(schedule => {
             this.schedule = schedule;
+         });
+   }
+
+   getWeeklySchedule(): void {
+      this.userService.getWeeklySchedule()
+         .subscribe(weeklySchedule => {
+            console.log(weeklySchedule);
+            this.weeklySchedule = weeklySchedule;
          });
    }
 
