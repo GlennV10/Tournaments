@@ -9,10 +9,10 @@
       <div class="tournament-schedule-calendar-container">
          <div class="tournament-schedule-calendar">
             <div class="tournament-schedule-days">
-               <div *ngFor="let day of weeklySchedule" class="tournament-schedule-day">
-                  <p class="tournament-schedule-day-letter">{{ day.date | date:'EEEEEE' }}</p>
-                  <p class="tournament-schedule-day-number">{{ day.date | date:'d' }}</p>
-                  <!-- <p class="tournament-schedule-month">{{ day.date | date:'MMM' }}</p> -->
+               <div *ngFor="let day of weeklySchedule" (click)="selectDay(day.day)" class="tournament-schedule-day" [ngClass]="{'selected-day': selectedDay === day.day}">
+                  <p class="tournament-schedule-day-weekday">{{ day.date | date:'EEEEEE' }}</p>
+                  <p class="tournament-schedule-day-date">{{ day.date | date:'d' }}</p>
+                  <p class="tournament-schedule-day-month">{{ day.date | date:'MMM' }}</p>
                </div>
             </div>
             <div class="tournament-schedule-now">
@@ -21,7 +21,7 @@
                </div>
                <div class="tournament-schedule-now-body">
                   <p class="tournament-schedule-now-title">Tournaments</p>
-                  <p class="tournament-schedule-now-subtitle">Playing right now - 2</p>
+                  <p class="tournament-schedule-now-subtitle">Playing right now - <span>2</span></p>
                </div>
                <div class="tournament-schedule-now-link">
                   <a (click)="alert('test')">Show</a>
@@ -30,8 +30,30 @@
          </div>
       </div>
       
-      <div *ngFor="let tournament of schedule">
-         <p>{{ tournament.name }}</p>
+      <div *ngIf="selectedDay" class="tournament-schedule-tournament-container">
+         <h2 class="tournament-container-title">{{ selectedDay }} - {{ schedule?.length}} tournaments</h2>
+         <div *ngFor="let tournament of schedule" class="tournament-container">
+            <div class="tournament-name-container">
+               <p class="tournament-name">{{ tournament.name }}</p>
+               <div class="tournament-pokerroom-container">
+                  <img class="tournament-pokerroom" src="../../../assets/images/PokerStars_emblem.svg"> {{ tournament.pokerroom }}
+               </div>
+            </div>
+            <div class="tournament-info-container">
+               <div class="tournament-time-container">
+                  <p class="tournament-time">{{ tournament.time.hour | number : '2.0-0' }}<span>:{{ tournament.time.minute | number : '2.0-0' }}</span></p>
+                  <p class="tournament-info-subtitle">Time</p>
+               </div>
+               <div class="tournament-buyin-container">
+                  <p class="tournament-buyin">${{ tournament.buyin.total | number : '1.2-2' }}</p>
+                  <p class="tournament-info-subtitle">Buyin</p>
+               </div>
+            </div>
+            <div class="tournament-button-container">
+               <button type="button" name="button" class="btn btn-details" [routerLink]="['/tournaments', tournament._id]"><i class="fas fa-info-circle"></i> Details</button>  
+               <button type="button" name="button" class="btn btn-favourite" (click)="deleteTournamentFromSchedule(tournament._id)"><i class="fas fa-star"></i></button>
+            </div>
+         </div>
       </div>
    </div>
 

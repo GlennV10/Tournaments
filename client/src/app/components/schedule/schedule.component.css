@@ -39,10 +39,12 @@
    justify-content: center;
    align-items: center;
    margin-right: 5px;
+   border-radius: 5px;
    background-color: hsl(0, 0%, 100%);
    -webkit-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
    -moz-box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
    box-shadow: 0 3px 5px 0 hsla(0, 0%, 0%, 0.05);
+   cursor: pointer;
 }
 
 .tournament-schedule-day:hover {
@@ -51,23 +53,29 @@
 	transition: all 0.5s;
 }
 
-.tournament-schedule-day-letter {
-   color: hsl(0, 0%, 70%);
-   font-size: .9rem;
+.tournament-schedule-day-weekday {
+   color: hsl(0, 0%, 75%);
+   font-size: .7rem;
    margin-bottom: 5px;
+   text-transform: uppercase;
 }
 
-.tournament-schedule-day-number {   
-   color: hsl(0, 0%, 27%);
-   font-weight: 700;
-   font-size: 1rem;
+.tournament-schedule-day-date {   
+   color: hsl(0, 0%, 45%);
+   font-weight: 600;
+   font-size: .9rem;
+   margin-top: 8px;
+}
+
+.tournament-schedule-day-month {   
+   color: hsl(0, 0%, 55%);
+   font-size: .8rem;
+   text-transform: lowercase;
 }
 
 .selected-day {
-   background-color: hsl(133, 44%, 51%);
-   color: hsl(133, 44%, 97%);
-   border-radius: 50%;
-   padding: 6px;
+   color: hsl(241, 42%, 97%);
+   border: 2px solid hsl(133, 44%, 51%);
 }
 
 /* Now */
@@ -105,6 +113,10 @@
    color: hsl(133, 44%, 88%);
 }
 
+.tournament-schedule-now-subtitle > span {
+   font-weight: 700;
+}
+
 .tournament-schedule-now-link {
    display: flex;
    justify-content: center;
@@ -118,6 +130,149 @@
    color: hsl(133, 44%, 88%);
    text-transform: uppercase;
    cursor: pointer;
+}
+
+/* ==== TOURNAMENTS ==== */
+/* General */
+.tournament-container-title {
+   color: hsl(0, 0%, 55%);
+   font-size: .8rem;
+   font-weight: 600;
+   margin-bottom: 30px;
+}
+
+/* Container  */
+.tournament-schedule-tournament-container {
+   margin-top: 50px;   
+}
+
+.tournament-container {
+   display: grid;   
+   grid-template-columns: auto max-content max-content;
+   padding: 10px 22px;
+   margin-bottom: 10px;
+   /* width: 100%;  ??? Why acting strange */
+   background-color: hsl(0, 0%, 100%);
+   -webkit-box-shadow: 0 1.8px 4px 0 hsla(0, 0%, 0%, 0.02);
+   -moz-box-shadow: 0 1.8px 4px 0 hsla(0, 0%, 0%, 0.02);
+   box-shadow: 0 1.8px 4px 0 hsla(0, 0%, 0%, 0.02);
+   outline: none;
+}
+
+/* === Tournament === */
+.tournament {
+   display: grid;   
+   grid-template-columns: auto max-content max-content;
+   padding: 10px 22px;
+   margin-bottom: 10px;
+   /* width: 100%;  ??? Why acting strange */
+   background-color: hsl(0, 0%, 100%);
+   -webkit-box-shadow: 0 1.8px 4px 0 hsla(0, 0%, 0%, 0.02);
+   -moz-box-shadow: 0 1.8px 4px 0 hsla(0, 0%, 0%, 0.02);
+   box-shadow: 0 1.8px 4px 0 hsla(0, 0%, 0%, 0.02);
+   outline: none;
+}
+
+/* Name */
+.tournament-name-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+   width: inherit;
+   padding-right: 10px;
+   white-space: nowrap; 
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+.tournament-name {
+   font-size: .8rem;
+   font-weight: 600;
+   width: 100%;
+   white-space: nowrap; 
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+/* Poker room */
+.tournament-pokerroom-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-right: 22px;
+   font-size: .85rem;
+   color: hsl(0, 0%, 45%);
+}
+
+.tournament-pokerroom {
+   width: .8rem;
+   margin-right: 5px;
+}
+
+/* Info */
+.tournament-info-container {
+   display: flex;
+   border-left: 2px solid hsl(0, 0%, 97%);
+}
+
+/* Buyin & Time */
+.tournament-buyin-container, .tournament-time-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   width: 100px;
+}
+
+.tournament-buyin, .tournament-time {
+   font-size: .85rem;
+   font-weight: 600;
+}
+
+.tournament-time > span {
+   font-size: .70rem;
+   font-weight: initial;
+}
+
+.tournament-info-subtitle {
+   font-size: .65rem;
+   color: hsl(0, 0%, 66%);
+}
+
+/* Tournament buttons */
+.tournament-button-container {
+   display: flex;
+   justify-content: flex-end;
+   padding-left: 22px;
+   border-left: 2px solid hsl(0, 0%, 97%);
+}
+
+.btn-details {
+   margin-right: 10px;
+   width: max-content;
+}
+
+.btn-details > i {
+   margin-right: 5px;
+}
+
+.btn-favourite:hover > .far.fa-star {
+	color: hsl(36.8, 90.36%, 77.18%);
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.btn-favourite:hover > .fas.fa-star {
+	color: hsl(0, 0%, 95%);
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+.fas.fa-star {
+   color: hsl(36.8, 90.36%, 77.18%);
 }
 
 /* ==== SIDEBAR ==== */

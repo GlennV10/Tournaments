@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Tournament } from '../../shared/models/tournaments/tournament.model';
+import { Days } from '../../shared/data/days.data';
 
 import { UserService } from '../../services/user/user.service';
 
@@ -13,30 +14,43 @@ export class ScheduleComponent implements OnInit {
    private schedule: Tournament[];
    private weeklySchedule: Object[];
    private today: Number;
+   private selectedDay: String;
 
    constructor(
       private userService: UserService
    ) { }
 
    ngOnInit() {
-      this.getSchedule();
-      this.getWeeklySchedule();
       this.today = Date.now();
-   }
-
-   getSchedule(): void {
-      this.userService.getSchedule()
-         .subscribe(schedule => {
-            this.schedule = schedule;
-         });
+      this.selectedDay = Days[new Date().getDay()];
+      this.getWeeklySchedule();
    }
 
    getWeeklySchedule(): void {
       this.userService.getWeeklySchedule()
          .subscribe(weeklySchedule => {
-            console.log(weeklySchedule);
             this.weeklySchedule = weeklySchedule;
+            this.getSchedule();
          });
+   }
+
+   getSchedule(): void {
+      const weekday = this.weeklySchedule.find(weekday => {
+         return weekday['day'] === this.selectedDay;
+      });
+      this.schedule = weekday['tournaments'];
+   }
+
+   deleteTournamentFromSchedule(tournamentId: String): void {
+      this.userService.deleteTournamentFromSchedule(tournamentId)
+         .subscribe(res => { 
+            this.getWeeklySchedule(); 
+         });
+   }
+
+   selectDay(day: String): void {
+      this.selectedDay = day;
+      this.getSchedule();
    }
 
 }

@@ -1,11 +1,11 @@
 let Days = [
+   'Sunday',
    'Monday',
    'Tuesday',
    'Wednesday',
    'Thursday',
    'Friday',
-   'Saturday',
-   'Sunday'
+   'Saturday'
 ];
 
 export { Days };

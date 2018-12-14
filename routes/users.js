@@ -19,6 +19,9 @@ router.get('/schedule', authenticated, userController.getUserSchedule);
 /* Weekly schedule */
 router.get('/schedule/weekly', authenticated, userController.getWeeklyUserSchedule);
 
+/* Get Scheduled Tournaments Running now*/
+router.get('/schedule/now', authenticated, userController.getUserScheduleNow);
+
 /* POST */
 /* Add Tournament to schedule */
 router.post('/schedule', authenticated, userController.addTournamentToSchedule);

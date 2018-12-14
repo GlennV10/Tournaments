@@ -46,6 +46,21 @@ exports.getWeeklyUserSchedule = (req, res, next) => {
    .catch(next);
 };
 
+exports.getUserScheduleNow = (req, res, next) => {
+   User.findOne({ _id: req.user._id })
+   .populate({
+      path: 'schedule',
+      options: {
+         sort: { 'time': 1 }
+      }
+   })
+   .then((user) => {
+      const schedule = getWeeklySchedule(user);
+      res.json(schedule);
+   })
+   .catch(next);
+};
+
 exports.addTournamentToSchedule = (req, res, next) => {
    Tournament.findOne({ _id: req.body.id })
    .then((tournament) => {
@@ -107,4 +122,11 @@ getWeeklySchedule = (user) => {
    });
 
    return weeklySchedule;
+};
+
+isTournamentRunning = (tournament) => {
+   let hour = moment().hour();
+   let minute = moment().minute();
+ 
+
 };
