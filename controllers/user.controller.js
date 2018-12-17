@@ -56,7 +56,15 @@ exports.getUserScheduleNow = (req, res, next) => {
    })
    .then((user) => {
       const schedule = getWeeklySchedule(user);
-      res.json(schedule);
+      const today = schedule.find(obj => obj.day === moment().format('dddd'));
+
+      const tournamentsRunning = [];
+
+      today.tournaments.forEach(tournament => {
+         if (isTournamentRunning(tournament)) tournamentsRunning.push(tournament);
+      });
+
+      res.json(tournamentsRunning);
    })
    .catch(next);
 };
@@ -102,7 +110,7 @@ exports.deleteTournamentFromSchedule = (req, res, next) => {
 };
 
 /* Helper Functions */
-getWeeklySchedule = (user) => {
+const getWeeklySchedule = (user) => {
    const weeklySchedule = [
       { day: "Monday", date: moment().isoWeekday("Monday"), tournaments: [] },
       { day: "Tuesday", date: moment().isoWeekday("Tuesday"), tournaments: [] },
@@ -124,9 +132,18 @@ getWeeklySchedule = (user) => {
    return weeklySchedule;
 };
 
-isTournamentRunning = (tournament) => {
+const isTournamentRunning = (tournament) => {
    let hour = moment().hour();
    let minute = moment().minute();
  
+   let tournamentEndHour = tournament.time.hour + tournament.lateRegistration.hour;
+   if (tournamentEndHour >= 24) tournamentEndHour -= 24;
 
+   let tournamentEndMinute = tournament.time.minute + tournament.lateRegistration.minute;
+   if (tournamentEndMinute >= 60) { tournamentEndMinute -= 60; tournamentEndHour++; }
+   
+   if (tournament.time.hour < hour && hour < tournamentEndHour) return true;
+   if (tournament.time.hour === hour && minute >= tournament.time.minute) return true;
+   if (tournamentEndHour === hour && minute <= tournamentEndMinute) return true;
+   return false;
 };

@@ -12,6 +12,7 @@ import { UserService } from '../../services/user/user.service';
 })
 export class ScheduleComponent implements OnInit {
    private schedule: Tournament[];
+   private now: Tournament[];
    private weeklySchedule: Object[];
    private today: Number;
    private selectedDay: String;
@@ -24,6 +25,7 @@ export class ScheduleComponent implements OnInit {
       this.today = Date.now();
       this.selectedDay = Days[new Date().getDay()];
       this.getWeeklySchedule();
+      this.getUserScheduleNow();
    }
 
    getWeeklySchedule(): void {
@@ -31,6 +33,13 @@ export class ScheduleComponent implements OnInit {
          .subscribe(weeklySchedule => {
             this.weeklySchedule = weeklySchedule;
             this.getSchedule();
+         });
+   }
+
+   getUserScheduleNow(): void {
+      this.userService.getUserScheduleNow()
+         .subscribe(schedule => {
+            this.now = schedule;
          });
    }
 
@@ -51,6 +60,11 @@ export class ScheduleComponent implements OnInit {
    selectDay(day: String): void {
       this.selectedDay = day;
       this.getSchedule();
+   }
+
+   selectNow(): void {
+      this.selectedDay = 'Running now';
+      this.schedule = this.now;
    }
 
 }

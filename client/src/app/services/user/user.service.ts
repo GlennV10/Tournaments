@@ -24,6 +24,11 @@ export class UserService {
       return this.http.get<Object[]>(`${this.api}/api/users/schedule/weekly`, { withCredentials: true });
    }
 
+   /* Get User Scheduled Tournaments Running now */
+   getUserScheduleNow(): Observable<Tournament[]> {
+      return this.http.get<Tournament[]>(`${this.api}/api/users/schedule/now`, { withCredentials: true });
+   }
+
    /* Add Tournament to Schedule */
    addTournamentToSchedule(tournamentId: String): Observable<Object> {      
       const tournament = { id: tournamentId };

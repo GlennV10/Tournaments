@@ -21,10 +21,10 @@
                </div>
                <div class="tournament-schedule-now-body">
                   <p class="tournament-schedule-now-title">Tournaments</p>
-                  <p class="tournament-schedule-now-subtitle">Playing right now - <span>2</span></p>
+                  <p class="tournament-schedule-now-subtitle">Running right now - <span>{{ now.length }}</span></p>
                </div>
                <div class="tournament-schedule-now-link">
-                  <a (click)="alert('test')">Show</a>
+                  <a (click)="selectNow()">Show</a>
                </div>
             </div>
          </div>
