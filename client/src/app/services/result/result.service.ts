@@ -18,9 +18,19 @@ export class ResultService {
       return this.http.get<Result[]>(`${this.api}/api/results`, { withCredentials: true });
    }
 
+   /* Get User Results by Status */
+   getResultsByStatus(status: String): Observable<Result[]> {
+      return this.http.get<Result[]>(`${this.api}/api/results/${status}`, { withCredentials: true});
+   }
+
    /* Add Result */
    addResult(tournamentId: String): Observable<Object> {
       const result = { id: tournamentId };
       return this.http.post<Object>(`${this.api}/api/results`, result, { withCredentials: true });
+   }
+
+   /* Update Result */
+   updateResult(resultId: String, body: Object): Observable<Object> {
+      return this.http.post<Object>(`${this.api}/api/results/${resultId}`, body, { withCredentials: true });
    }
 }

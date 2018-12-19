@@ -91,11 +91,11 @@ exports.deleteTournament = (req, res, next) => {
    Tournament.findOneAndDelete({
       _id: req.params.id
    })
-      .then((tournament) => {
-         if (!tournament) res.json({ success: false, message: 'No tournament found.' })
-         if (tournament) res.json({ success: true, message: 'Tournament deleted.', tournament });
-      })
-      .catch(next);
+   .then((tournament) => {
+      if (!tournament) res.json({ success: false, message: 'No tournament found.' })
+      if (tournament) res.json({ success: true, message: 'Tournament deleted.', tournament });
+   })
+   .catch(next);
 };
 
 /** 

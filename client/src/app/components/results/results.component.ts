@@ -21,7 +21,7 @@ export class ResultsComponent implements OnInit {
    }
 
    getResults() {
-      this.resultService.getResults()
+      this.resultService.getResultsByStatus('finished')
          .subscribe(results => {
             this.results = results;
          });

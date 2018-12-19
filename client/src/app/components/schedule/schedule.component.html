@@ -1,12 +1,11 @@
 <div class="content-wrapper">
    <div class="schedule-container">
-
       <div class="tournament-schedule-title-container">
          <p class="tournament-schedule-title">Today</p>
          <p class="tournament-schedule-date">{{ today | date:'longDate' }}</p>
       </div>
       
-      <div class="tournament-schedule-calendar-container">
+      <div *ngIf="schedule && now" class="tournament-schedule-calendar-container">
          <div class="tournament-schedule-calendar">
             <div class="tournament-schedule-days">
                <div *ngFor="let day of weeklySchedule" (click)="selectDay(day.day)" class="tournament-schedule-day" [ngClass]="{'selected-day': selectedDay === day.day}">
@@ -21,7 +20,7 @@
                </div>
                <div class="tournament-schedule-now-body">
                   <p class="tournament-schedule-now-title">Tournaments</p>
-                  <p class="tournament-schedule-now-subtitle">Running right now - <span>{{ now.length }}</span></p>
+                  <p class="tournament-schedule-now-subtitle">Running right now - <span>{{ now?.length }}</span></p>
                </div>
                <div class="tournament-schedule-now-link">
                   <a (click)="selectNow()">Show</a>
@@ -57,5 +56,7 @@
       </div>
    </div>
 
-   <div class="sidebar-container"></div>
+   <div class="sidebar-container">
+      
+   </div>
 </div>

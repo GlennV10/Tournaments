@@ -13,8 +13,10 @@ const app = express();
 const port = 3000;
 
 /* Connect to MongoDB */
-mongoose.connect(config.database, { useNewUrlParser: true });
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
+mongoose.connect(config.database);
 mongoose.Promise = global.Promise;
 
 mongoose.connection.on('connected', () => {

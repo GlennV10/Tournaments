@@ -1,5 +1,5 @@
-<div *ngIf="tournaments && startingTournaments && userSchedule" class="content-wrapper">
-   <div class="tournaments-container">
+<div *ngIf="startingTournaments && userSchedule" class="content-wrapper">
+   <div *ngIf="tournaments" class="tournaments-container">
       <h1 class="page-title"><span>{{ (tournaments | filterBuyin : minBuyin : maxBuyin | filterSpeed : speeds)?.length }}</span> tournaments found</h1>
       <div class="tournament" *ngFor="let tournament of tournaments 
                                           | filterBuyin : minBuyin : maxBuyin

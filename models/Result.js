@@ -27,6 +27,11 @@ const ResultSchema = new Schema({
    position: {
       type: Number,
       min: 1
+   },
+   status: {
+      type: String,
+      default: 'PLAYING',
+      enum: ['PLAYING', 'VALIDATED', 'FINISHED']
    }
 });
 

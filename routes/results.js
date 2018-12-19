@@ -9,6 +9,9 @@ const resultController = require('../controllers/result.controller');
 /* Get ALL Results */
 router.get('/', authenticated, resultController.getResults);
 
+/* Get Results by Status */
+router.get('/:status', authenticated, resultController.getResultsByStatus);
+
 /**
  * POST-requests
  */

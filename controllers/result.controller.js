@@ -20,15 +20,35 @@ exports.getResults = (req, res, next) => {
    .catch(next);
 };
 
+exports.getResultsByStatus = (req, res, next) => {
+   const { status } = req.params;
+
+   if (!Result.schema.path('status').enumValues.includes(status.toUpperCase())) {
+      next({ message: 'Invalid status.' });
+   } else {
+      Result.find({
+         user: req.user.id,
+         status: status.toUpperCase()
+      })
+      .sort({ date: 1 })
+      .populate('user')
+      .populate('tournament')
+      .then((results) => {
+         res.json(results);
+      })
+      .catch(next);
+   }
+};
+
 /* === POST === */
 exports.addResult = (req, res, next) => {
    if (req.user.schedule.indexOf(req.body.id) < 0) {
       User.findOne({ _id: req.user._id })
       .then((user) => {
          user.schedule.push(req.body.id);
-         user.save((err) => {
-            if (err) next(err);
-         });
+         user.save()
+         .then(() => {})
+         .catch(next);
       })
       .catch(next);
    }
@@ -38,10 +58,11 @@ exports.addResult = (req, res, next) => {
       tournament: req.body.id
    });
 
-   result.save((err) => {
-      if (err) next(err);
+   result.save()
+   .then(() => {
       res.json({ success: true, message: 'Result added', result });
-   });
+   })
+   .catch(next);
 };
 
 /* === PUT === */
@@ -50,22 +71,33 @@ exports.updateResult = (req, res, next) => {
    .then((result) => {
       if (result === null) {
          next({ success: false, message: 'Result was not found' });
-      } else if (result.payout !== undefined) {
+      } 
+      else if (result.status === 'FINISHED') {
          next({ success: false, message: 'Result already finished' });
-      } else {
-         if (!result.user.equals(req.user._id)) {
-            next({ success: false, message: 'This is not your result' });
-         } else {
-            const { payout, bounties, position } = req.body;
-            if (payout) result.payout = payout;
-            if (bounties) result.bounties = bounties;
-            if (position) result.position = position;
+      } 
+      else if (!result.user.equals(req.user._id)) {
+         next({ success: false, message: 'This is not your result' });
+      } 
+      else {
+         const { payout, bounties, position, status } = req.body;
+         if (payout) result.payout = payout;
+         if (result.payout !== undefined) result.status = 'VALIDATED';
+         if (bounties) result.bounties = bounties;
+         if (position) result.position = position;
+         if (status) result.status = status;
 
-            result.save((err) => {
-               if (err) next(err);
+         let opts = { runValidators: true };
+         Result.findOneAndUpdate({ _id: req.params.id }, result, opts)
+         .then(() => {
+            Result.findOne({
+               _id: req.params.id
+            })
+            .then((result) => {
                res.json({ success: true, message: 'Result updated', result });
-            });
-         }
+            })
+            .catch(next);
+         })
+         .catch(next);
       }
    })
    .catch(next);
