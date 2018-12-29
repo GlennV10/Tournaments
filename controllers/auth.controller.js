@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const passport = require('passport');
 const bcrypt = require('bcryptjs');
-const config = require('../config/database');
 
 const User = require('../models/User');
 
@@ -15,21 +14,22 @@ exports.registerUser = (req, res, next) => {
       password: req.body.password
    });
 
-   addUser(newUser, (err, user) => {
-      if (err) next({ message: 'Fill in all fields.' });
-      if (!user) next({ message: 'Failed to register.' });
+   addUser(newUser, next, (err, user) => {
+      if (err) next({ message: err });
+      if (!user) next({ message: 'Failed to register' });
       if (user) res.json({ success: true, message: 'User registered', user });
    });
 };
 
 exports.loginUser = (req, res, next) => {
-   passport.authenticate('local', (err, user) => {
+   passport.authenticate('local', (err, user, info) => {
       if (err) next(err);
+      if (info) next(info);
       if (user) {
          req.login(user, (err) => {
             if (err) next(err);
             res.json({
-               success: true, message: 'You are logged in.', user: {
+               success: true, message: 'You are logged in', user: {
                   id: user._id,
                   firstname: user.firstname,
                   lastname: user.lastname,
@@ -43,10 +43,14 @@ exports.loginUser = (req, res, next) => {
 };
 
 exports.logoutUser = (req, res, next) => {
-   req.session.destroy((err) => {
-      if (err) next(err);
-      res.json({ success: true, message: 'You are logged out.'})
-   });
+   if (req.isAuthenticated()) {
+      req.session.destroy((err) => {
+         if (err) next(err);
+         res.json({ success: true, message: 'You are logged out'});
+      });
+   } else {
+      next({ success: false, message: 'You are not logged in'});
+   }
 };
 
 exports.getStatus = (req, res, next) => {
@@ -56,10 +60,10 @@ exports.getStatus = (req, res, next) => {
 /**
  * Helper functions
  */
-addUser = (newUser, callback) => {
+addUser = (newUser, next, callback) => {
    bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(newUser.password, salt, (err, hash) => {
-         if (err) throw err;
+         if (err) next(err);
          newUser.password = hash;
          newUser.save(callback);
       });
@@ -68,7 +72,7 @@ addUser = (newUser, callback) => {
 
 comparePassword = (candidatePassword, hash, callback) => {
    bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
-      if (err) throw err;
+      if (err) next(err);
       callback(null, isMatch);
    });
 };

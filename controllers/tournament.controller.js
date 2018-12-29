@@ -8,23 +8,19 @@ const Tournament = require('../models/Tournament');
  * Route functions
  */
 /* === GET === */
-exports.getTournamentById = (req, res, next) => {
-   Tournament.findOne({
-      _id: req.params.id
-   })
-   .then((tournament) => {
-      res.json(tournament);
-   })
-   .catch(next);
-};
-
 exports.getAllTournaments = (req, res, next) => {
    Tournament.find({})
-   .sort({ time: 1 })
-   .then((tournaments) => {
-      res.json(tournaments);
-   })
-   .catch(next);
+      .sort({ time: 1 })
+      .then((tournaments) => {
+         res.json(tournaments);
+      })
+      .catch(next);
+};
+
+exports.getTournamentById = (req, res, next) => {
+   Tournament.findOne({ _id: req.params.id })
+      .then((tournament) => { res.json(tournament) })
+      .catch(next);
 };
 
 /* REFACTOR */
@@ -64,24 +60,22 @@ exports.getStartingTournaments = (req, res, next) => {
 /* === POST === */
 exports.addTournament = (req, res, next) => {
    Tournament.create(req.body)
-   .then((tournament) => {
-      res.json({ success: true, message: 'Tournament added.', tournament });
-   })
-   .catch(next);
+      .then((tournament) => {
+         res.json({ success: true, message: 'Tournament added', tournament });
+      })
+      .catch(next);
 };
 
 /* === PUT === */
 exports.updateTournament = (req, res, next) => {
    let opts = { runValidators: true };
    Tournament.findOneAndUpdate({ _id: req.params.id }, req.body, opts, () => {
-      Tournament.findOne({
-         _id: req.params.id
-      })
-      .then((tournament) => {
-         if (!tournament) res.json({ success: false, message: 'No tournament found.' });
-         if (tournament) res.json({ success: true, message: 'Tournament updated.', tournament });
-      })
-      .catch(next);
+      Tournament.findOne({ _id: req.params.id })
+         .then((tournament) => {
+            if (!tournament) res.json({ success: false, message: 'No tournament found' });
+            if (tournament) res.json({ success: true, message: 'Tournament updated', tournament });
+         })
+         .catch(next);
    })
    .catch(next);
 };
@@ -92,8 +86,8 @@ exports.deleteTournament = (req, res, next) => {
       _id: req.params.id
    })
    .then((tournament) => {
-      if (!tournament) res.json({ success: false, message: 'No tournament found.' })
-      if (tournament) res.json({ success: true, message: 'Tournament deleted.', tournament });
+      if (!tournament) res.json({ success: false, message: 'No tournament found' })
+      if (tournament) res.json({ success: true, message: 'Tournament deleted', tournament });
    })
    .catch(next);
 };
@@ -118,7 +112,7 @@ const getRemainingTime = (tournaments, time) => {
          }
          resolve(startingTournaments);
       } else {
-         reject('No tournaments.');
+         reject('No tournaments');
       }
    });
 }; 

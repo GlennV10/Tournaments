@@ -57,6 +57,7 @@ export class TournamentsComponent implements OnInit {
       this.userService.getSchedule()
          .subscribe(schedule => {
             this.userSchedule = schedule;
+            console.log(schedule);
          });
    }
 

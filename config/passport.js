@@ -10,13 +10,9 @@ module.exports = (passport) => {
       passwordField: 'password'
    }, (username, password, done) => {
       User.findOne({ username }, (err, user) => {
-         if (err) { return done(err); }
-         if (!user) {
-            return done({ message: 'Incorrect username.' }, false);
-         }
-         if (!bcrypt.compareSync(password, user.password)) {
-            return done({ message: 'Incorrect password.' }, false);
-         }
+         if (err) return done(err);
+         if (!user) return done({ message: 'Incorrect username' }, false);
+         if (!bcrypt.compareSync(password, user.password)) return done({ message: 'Incorrect password' }, false);
          return done(null, user);
       });
    }));

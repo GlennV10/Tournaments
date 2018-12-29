@@ -3,35 +3,27 @@ const router = express.Router();
 
 const resultController = require('../controllers/result.controller');
 
-/**
- * GET-requests
- */
+/* GET */
 /* Get ALL Results */
-router.get('/', authenticated, resultController.getResults);
+router.get('/', isAuthenticated, resultController.getResults);
 
 /* Get Results by Status */
-router.get('/:status', authenticated, resultController.getResultsByStatus);
+router.get('/:status', isAuthenticated, resultController.getResultsByStatus);
 
-/**
- * POST-requests
- */
+/* POST */
 /* Add Result*/
-router.post('/', authenticated, resultController.addResult);
+router.post('/', isAuthenticated, resultController.addResult);
 
-/**
- * PUT-request
- * Update a result
- */
-router.put('/:id', authenticated, resultController.updateResult);
+/* PUT */
+/* Update a result */
+router.put('/:id', isAuthenticated, resultController.updateResult);
 
-/**
- * DELETE-request
- * Delete a result
- */
-router.delete('/:id', authenticated, resultController.deleteResult);
+/* DELETE */
+/* Delete a result */
+router.delete('/:id', isAuthenticated, resultController.deleteResult);
 
 /* Authorization middleware */
-function authenticated (req, res, next) {
+function isAuthenticated(req, res, next) {
    if (req.isAuthenticated()) return next();   
    res.status(401).json({ message: 'Unauthorized'});
 };

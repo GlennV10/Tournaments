@@ -74,8 +74,7 @@
 }
 
 .selected-day {
-   color: hsl(241, 42%, 97%);
-   border: 2px solid hsl(133, 44%, 51%);
+   border: 1px solid hsl(133, 44%, 51%);
 }
 
 /* Now */
@@ -105,7 +104,9 @@
 }
 
 .tournament-schedule-now-title {
-   font-weight: 700;
+   font-weight: 600;
+   font-size: .9rem;
+   letter-spacing: 1px;
 }
 
 .tournament-schedule-now-subtitle {
@@ -114,7 +115,7 @@
 }
 
 .tournament-schedule-now-subtitle > span {
-   font-weight: 700;
+   font-weight: 600;
 }
 
 .tournament-schedule-now-link {
@@ -126,7 +127,7 @@
 
 .tournament-schedule-now-link > a {
    font-size: .8rem;
-   font-weight: 700;
+   font-weight: 600;
    color: hsl(133, 44%, 88%);
    text-transform: uppercase;
    cursor: pointer;

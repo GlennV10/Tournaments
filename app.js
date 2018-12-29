@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -10,26 +11,25 @@ const crypto = require('crypto');
 
 /* Set up Express app */
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 5000;
 
 /* Connect to MongoDB */
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
-mongoose.connect(config.database);
 mongoose.Promise = global.Promise;
 
-mongoose.connection.on('connected', () => {
-   console.log(`Connected to database ${config.database}`);
-});
-
-mongoose.connection.on('error', (err) => {
-   console.log(`Database error: ${err}`);
-});
+mongoose
+   .connect(config.database)   
+   .then(() => console.log(`Connected to database ${config.database}`))
+   .catch(err => console.log(`Database error: ${err})`));
 
 /* === Middleware === */
+/* Helmet */
+app.use(helmet());
+
 /* CORS */
-app.use(cors({ origin: ['http://localhost:4200'], credentials: true }));
+app.use(cors({ credentials: true }));
 
 /* Body-parser */
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -50,13 +50,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
 
-
 /* === Routes === */
-/* Index route */
-app.get('/', (req, res) => {
-   res.send('Invalid endpoint.');
-});
-
 /* Auth */
 const auth = require('./routes/auth');
 app.use('/api/auth', auth);
@@ -72,6 +66,9 @@ app.use('/api/tournaments', tournaments);
 /* Results */
 const results = require('./routes/results');
 app.use('/api/results', results);
+
+/* Invalid routes */
+app.use('/*', (req, res, next) => res.status(404).json({ error: 'Invalid route' }));
 
 /* === Error Handling === */
 app.use((err, req, res, next) => {

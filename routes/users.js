@@ -7,31 +7,31 @@ const userController = require('../controllers/user.controller');
   User Profile
 =========== */
 /* GET-request to get User Profile */
-router.get('/profile', authenticated, userController.getUserProfile);
+router.get('/profile', isAuthenticated, userController.getUserProfile);
 
 /* ============
   User Schedule
 ============ */
 /* GET */ 
 /* Get Scheduled Tournaments */
-router.get('/schedule', authenticated, userController.getUserSchedule);
+router.get('/schedule', isAuthenticated, userController.getUserSchedule);
 
 /* Weekly schedule */
-router.get('/schedule/weekly', authenticated, userController.getWeeklyUserSchedule);
+router.get('/schedule/weekly', isAuthenticated, userController.getWeeklyUserSchedule);
 
 /* Get Scheduled Tournaments Running now*/
-router.get('/schedule/now', authenticated, userController.getUserScheduleNow);
+router.get('/schedule/now', isAuthenticated, userController.getUserScheduleNow);
 
 /* POST */
 /* Add Tournament to schedule */
-router.post('/schedule', authenticated, userController.addTournamentToSchedule);
+router.post('/schedule', isAuthenticated, userController.addTournamentToSchedule);
 
 /* DELETE */
 /* Remove Tournament from schedule */
-router.delete('/schedule/:id', authenticated, userController.deleteTournamentFromSchedule);
+router.delete('/schedule/:id', isAuthenticated, userController.deleteTournamentFromSchedule);
 
 /* Authorization middleware */
-function authenticated (req, res, next) {
+function isAuthenticated(req, res, next) {
    if (req.isAuthenticated()) return next();   
    res.status(401).json({ message: 'Unauthorized'});
 };

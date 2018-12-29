@@ -16,16 +16,16 @@ export class TournamentService {
 
    /* Get Tournament by ID */
    getTournament(id: String): Observable<Tournament> {
-      return this.http.get<Tournament>(`${this.api}/api/tournaments/${id}`);
+      return this.http.get<Tournament>(`${this.api}/api/tournaments/${id}`, { withCredentials: true });
    }
 
    /* Get ALL Tournament */
    getTournaments(): Observable<Tournament[]> {
-      return this.http.get<Tournament[]>(`${this.api}/api/tournaments`);
+      return this.http.get<Tournament[]>(`${this.api}/api/tournaments`, { withCredentials: true });
    }
 
    /* Get Tournaments starting soon */
    getStartingTournaments(): Observable<Tournament[]> {
-      return this.http.get<Tournament[]>(`${this.api}/api/tournaments/starting`);
+      return this.http.get<Tournament[]>(`${this.api}/api/tournaments/starting`, { withCredentials: true });
    }
 }

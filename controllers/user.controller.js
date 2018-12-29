@@ -16,101 +16,115 @@ exports.getUserProfile = (req, res, next) => {
   User Schedule
 ============ */
 exports.getUserSchedule = (req, res, next) => {
-   User.findOne({
-      _id: req.user._id
-   })
-   .populate({
-      path: 'schedule',
-      options: {
-         sort: { 'time': 1 }
-      }
-   })
-   .then((user) => {
-      res.json(user.schedule);
-   })
-   .catch(next);
+   User.findOne({ _id: req.user._id })
+      .populate({
+         path: 'schedule',
+         options: {
+            sort: { 'time': 1 }
+         }
+      })
+      .then((user) => { res.json(user.schedule) })
+      .catch(next);
 };
 
 exports.getWeeklyUserSchedule = (req, res, next) => {
    User.findOne({ _id: req.user._id })
-   .populate({
-      path: 'schedule',
-      options: {
-         sort: { 'time': 1 }
-      }
-   })
-   .then((user) => {
-      const schedule = getWeeklySchedule(user);
-      res.json(schedule);
-   })
-   .catch(next);
+      .populate({
+         path: 'schedule',
+         options: {
+            sort: { 'time': 1 }
+         }
+      })
+      .then((user) => {
+         const schedule = getWeeklySchedule(user.schedule);
+         res.json(schedule);
+      })
+      .catch(next);
 };
 
 exports.getUserScheduleNow = (req, res, next) => {
    User.findOne({ _id: req.user._id })
-   .populate({
-      path: 'schedule',
-      options: {
-         sort: { 'time': 1 }
-      }
-   })
-   .then((user) => {
-      const schedule = getWeeklySchedule(user);
-      const today = schedule.find(obj => obj.day === moment().format('dddd'));
+      .populate({
+         path: 'schedule',
+         options: {
+            sort: { 'time': 1 }
+         }
+      })
+      .then((user) => {
+         const schedule = getWeeklySchedule(user.schedule);
+         const today = schedule.find(obj => obj.day === moment().format('dddd'));
 
-      const tournamentsRunning = [];
+         const tournamentsRunning = [];
 
-      today.tournaments.forEach(tournament => {
-         if (isTournamentRunning(tournament)) tournamentsRunning.push(tournament);
-      });
+         today.tournaments.forEach(tournament => {
+            if (isTournamentRunning(tournament)) tournamentsRunning.push(tournament);
+         });
 
-      res.json(tournamentsRunning);
-   })
-   .catch(next);
+         res.json(tournamentsRunning);
+      })
+      .catch(next);
 };
 
 exports.addTournamentToSchedule = (req, res, next) => {
    Tournament.findOne({ _id: req.body.id })
-   .then((tournament) => {
-      if (!tournament) {
-         res.status(422).json({ success: false, message: 'No tournament found.'});
-      } else {
-         User.findOne({ _id: req.user.id })
-         .then((user) => {
-            if (user.schedule.indexOf(tournament._id) > -1) {
-               res.status(422).json({ success: false, message: 'Tournament already in your schedule.' });
-            } else {
-               user.schedule.push(tournament._id);
-               user.save((err) => {
-                  if (err) next(err);
-                  res.json({ success: true, message: 'Tournament added to your schedule.' })
-               });
-            }
-         })
-         .catch(next);
-      }
-   })
-   .catch(next);   
+      .then((tournament) => {
+         if (!tournament) {
+            res.status(422).json({ success: false, message: 'No tournament found'});
+         } else {
+            User.findOne({ _id: req.user.id })
+               .then((user) => {
+                  if (user.schedule.indexOf(tournament._id) > -1) {
+                     res.status(422).json({ success: false, message: 'Tournament already in your schedule' });
+                  } else {
+                     user.schedule.push(tournament._id);
+                     user.save((err) => {
+                        if (err) next(err);
+                        res.json({ success: true, message: 'Tournament added to your schedule' });
+                     });
+                  }
+               })
+               .catch(next);
+         }
+      })
+      .catch(next);   
 };
 
 exports.deleteTournamentFromSchedule = (req, res, next) => {
    User.findOne({ _id: req.user.id })
-   .then((user) => {
-      if (user.schedule.indexOf(req.params.id) === -1) {
-         res.status(422).json({ success: false, message: 'Tournament is not in your schedule.' });
-      } else {
-         user.schedule.splice(user.schedule.indexOf(req.params.id), 1);
-         user.save((err) => {
-            if (err) next(err);
-            res.json({ success: true, message: 'Tournament deleted from your schedule.' });
-         });
-      }
-   })
-   .catch(next);
+      .then((user) => {
+         if (user.schedule.indexOf(req.params.id) === -1) {
+            res.status(422).json({ success: false, message: 'Tournament is not in your schedule' });
+         } else {
+            user.schedule.splice(user.schedule.indexOf(req.params.id), 1);
+            user.save((err) => {
+               if (err) next(err);
+               res.json({ success: true, message: 'Tournament deleted from your schedule' });
+            });
+         }
+      })
+      .catch(next);
 };
 
 /* Helper Functions */
-const getWeeklySchedule = (user) => {
+const getSortedSchedule = (schedule) => {
+   const sortedSchedule = [];
+
+   schedule.forEach((tournament) => {
+      let tournamentsByTime = sortedSchedule.find(obj => obj.time === tournament.time.hour);
+
+      if (!tournamentsByTime) {
+         tournamentsByTime = { time: tournament.time.hour, tournaments: [] };
+         tournamentsByTime.tournaments.push(tournament);
+         sortedSchedule.push(tournamentsByTime);
+      } else {
+         tournamentsByTime.tournaments.push(tournament);
+      }
+   });
+   
+   return sortedSchedule;
+};
+
+const getWeeklySchedule = (schedule) => {
    const weeklySchedule = [
       { day: "Monday", date: moment().isoWeekday("Monday"), tournaments: [] },
       { day: "Tuesday", date: moment().isoWeekday("Tuesday"), tournaments: [] },
@@ -121,7 +135,7 @@ const getWeeklySchedule = (user) => {
       { day: "Sunday", date: moment().isoWeekday("Sunday"), tournaments: [] },
    ];
 
-   user.schedule.forEach((tournament) => {
+   schedule.forEach((tournament) => {
       weeklySchedule.forEach((day) => {
          if (tournament.days.includes(day.day)) {
             day.tournaments.push(tournament);
