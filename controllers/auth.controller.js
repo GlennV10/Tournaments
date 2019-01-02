@@ -53,8 +53,11 @@ exports.logoutUser = (req, res, next) => {
    }
 };
 
-exports.getStatus = (req, res, next) => {
-   res.json(req.isAuthenticated());
+exports.getStatus = (req, res) => {
+   res.json({ 
+      success: req.isAuthenticated(), 
+      user: req.user 
+   });
 };
 
 /**
@@ -62,6 +65,7 @@ exports.getStatus = (req, res, next) => {
  */
 addUser = (newUser, next, callback) => {
    bcrypt.genSalt(10, (err, salt) => {
+      if (err) next(err);
       bcrypt.hash(newUser.password, salt, (err, hash) => {
          if (err) next(err);
          newUser.password = hash;

@@ -6,30 +6,21 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const config = require('./config/database');
 const crypto = require('crypto');
 
 /* Set up Express app */
 const app = express();
 const port = process.env.PORT || 5000;
 
-/* Connect to MongoDB */
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useFindAndModify', false);
-mongoose.set('useCreateIndex', true);
-mongoose.Promise = global.Promise;
-
-mongoose
-   .connect(config.database)   
-   .then(() => console.log(`Connected to database ${config.database}`))
-   .catch(err => console.log(`Database error: ${err})`));
-
 /* === Middleware === */
+/* Connect to Database */
+require('./config/database')();
+
 /* Helmet */
 app.use(helmet());
 
 /* CORS */
-app.use(cors({ credentials: true }));
+app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:4200'], credentials: true }));
 
 /* Body-parser */
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -39,10 +30,12 @@ app.use(bodyParser.json());
 app.use(session({
    secret: crypto.randomBytes(256).toString('hex'),
    store: new MongoStore({ mongooseConnection: mongoose.connection }),
-   cookie: { maxAge: 24 * 60 * 60 * 1000 }, //One day
+   cookie: { 
+      maxAge: 24 * 60 * 60 * 1000 //One day
+      // cookie : { secure: true }
+   }, 
    resave: false,
    saveUninitialized: false
-   // cookie: { secure: true }
 }));
 
 /* Passport */
