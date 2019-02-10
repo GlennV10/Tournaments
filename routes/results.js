@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { isAuthenticated } = require('../config/auth');
 
 const resultController = require('../controllers/result.controller');
 
@@ -21,11 +22,5 @@ router.put('/:id', isAuthenticated, resultController.updateResult);
 /* DELETE */
 /* Delete a result */
 router.delete('/:id', isAuthenticated, resultController.deleteResult);
-
-/* Authorization middleware */
-function isAuthenticated(req, res, next) {
-   if (req.isAuthenticated()) return next();   
-   res.status(401).json({ message: 'Unauthorized'});
-};
 
 module.exports = router;

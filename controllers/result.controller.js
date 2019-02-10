@@ -12,7 +12,7 @@ exports.getResults = (req, res, next) => {
    Result.find({ user: req.user._id })
       .populate('user')
       .populate('tournament')
-      .then((results) => { res.json(results) })
+      .then(results => res.json(results))
       .catch(next);
 };
 
@@ -29,9 +29,7 @@ exports.getResultsByStatus = (req, res, next) => {
          .sort({ date: 1 })
          .populate('user')
          .populate('tournament')
-         .then((results) => {
-            res.json(results);
-         })
+         .then(results => res.json(results))
          .catch(next);
    }
 };
@@ -43,7 +41,7 @@ exports.addResult = (req, res, next) => {
          .then((user) => {
             user.schedule.push(req.body.id);
             user.save()
-            .catch(next);
+               .catch(next);
          })
          .catch(next);
    }
@@ -54,9 +52,7 @@ exports.addResult = (req, res, next) => {
    });
 
    result.save()
-      .then(() => {
-         res.json({ success: true, message: 'Result added', result });
-      })
+      .then(() => res.json({ success: true, message: 'Result added', result }))
       .catch(next);
 };
 

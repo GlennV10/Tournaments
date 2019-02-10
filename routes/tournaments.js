@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { isAuthenticated } = require('../config/auth');
 
 const tournamentController= require('../controllers/tournament.controller');
 
@@ -24,11 +25,5 @@ router.put('/:id', isAuthenticated, tournamentController.updateTournament);
 /* DELETE */ 
 /* Delete a tournament */
 router.delete('/:id', isAuthenticated, tournamentController.deleteTournament);
-
-/* Authorization middleware */
-function isAuthenticated(req, res, next) {
-   if (req.isAuthenticated()) return next();   
-   res.status(401).json({ message: 'Unauthorized'});
-};
 
 module.exports = router;

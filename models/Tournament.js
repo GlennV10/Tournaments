@@ -3,13 +3,21 @@ const Schema = mongoose.Schema;
 
 /* Create Tournament schema and model */
 const TournamentSchema = new Schema({
-   name: { type: String, required: true },
-   pokerroom: { type: String, default: 'Pokerstars', enum: ['Pokerstars'] },
+   name: { 
+      type: String, 
+      required: true 
+   },
+   pokerroom: { 
+      type: String, 
+      default: 'Pokerstars', 
+      enum: ['Pokerstars'] 
+   },
    buyin: {
       total: { type: Number, min: 0.01, required: true },
       regularPool: { type: Number, min: 0.01, required: true },
       bountyPool: {
-         type: Number, min: 0,
+         type: Number, 
+         min: 0,
          required: function () {
             return this.formats.includes('Progressive Knockout') ||
                this.formats.includes('Bounty Builder') ||
@@ -18,7 +26,11 @@ const TournamentSchema = new Schema({
       },
       rake: { type: Number, min: 0, required: true }
    },
-   prizePool: { type: Number, min: 0, required: true },
+   prizePool: { 
+      type: Number, 
+      min: 0, 
+      required: true 
+   },
    time: {
       hour: { type: Number, min: 0, max: 23 },
       minute: { type: Number, min: 0, max: 59 }
@@ -28,10 +40,15 @@ const TournamentSchema = new Schema({
       minute: { type: Number, min: 0, max: 59 }
    },
    speed: {
-      type: String, default: 'Regular',
+      type: String, 
+      default: 'Regular',
       enum: ['Slow', 'Regular', 'Turbo', 'Hyper-Turbo', 'Bubble Rush']
    },
-   tableSize: { type: Number, default: 9, enum: [2, 3, 4, 6, 8, 9] },
+   tableSize: { 
+      type: Number, 
+      default: 9, 
+      enum: [2, 3, 4, 6, 8, 9] 
+   },
    formats: [{
       type: String,
       default: 'Regular',

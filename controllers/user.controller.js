@@ -23,7 +23,7 @@ exports.getUserSchedule = (req, res, next) => {
             sort: { 'time': 1 }
          }
       })
-      .then((user) => { res.json(user.schedule) })
+      .then(user => res.json(user.schedule))
       .catch(next);
 };
 

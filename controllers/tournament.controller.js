@@ -11,15 +11,13 @@ const Tournament = require('../models/Tournament');
 exports.getAllTournaments = (req, res, next) => {
    Tournament.find({})
       .sort({ time: 1 })
-      .then((tournaments) => {
-         res.json(tournaments);
-      })
+      .then(tournaments => res.json(tournaments))
       .catch(next);
 };
 
 exports.getTournamentById = (req, res, next) => {
    Tournament.findOne({ _id: req.params.id })
-      .then((tournament) => { res.json(tournament) })
+      .then(tournament => res.json(tournament))
       .catch(next);
 };
 

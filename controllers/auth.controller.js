@@ -28,7 +28,7 @@ exports.loginUser = (req, res, next) => {
       if (user) {
          req.login(user, (err) => {
             if (err) next(err);
-            res.json({
+            else res.json({
                success: true, message: 'You are logged in', user: {
                   id: user._id,
                   firstname: user.firstname,
@@ -46,7 +46,7 @@ exports.logoutUser = (req, res, next) => {
    if (req.isAuthenticated()) {
       req.session.destroy((err) => {
          if (err) next(err);
-         res.json({ success: true, message: 'You are logged out'});
+         else res.json({ success: true, message: 'You are logged out'});
       });
    } else {
       next({ success: false, message: 'You are not logged in'});
